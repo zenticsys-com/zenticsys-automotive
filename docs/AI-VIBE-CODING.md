@@ -2,6 +2,53 @@
 
 Read `docs/PROJECT-BRAIN.md` and the active phase file before making changes.
 
+## External configuration workflow
+
+Use a two-stage workflow so the AI does not guess the final configuration contract before the integration exists.
+
+### Stage 1 — Brief preflight before coding
+
+Before implementation, the AI should state:
+
+- Which external service the phase is expected to use
+- Whether an account or resource will probably be needed
+- Whether the feature can be developed with a mock/placeholder first
+- What could block implementation or testing
+
+This is a planning notice, not the final environment-variable checklist.
+
+### Stage 2 — Exact configuration after the integration is written
+
+After implementing the integration, the AI must inspect the code it actually wrote and then tell the owner:
+
+- Which portal to open
+- Which account, project, bucket, event, or resource to create
+- Which IDs, URLs, tokens, or credentials are required
+- The exact environment-variable names used by the code
+- Whether each value is public or secret
+- Whether the value belongs in local development, Vercel Preview, or Vercel Production
+- How to add each value
+- How to verify the configuration
+
+The AI may implement UI shells, typed interfaces, mocks, and integration scaffolding before credentials are available. It must not claim the integration is complete until real configuration and verification succeed.
+
+This workflow applies to Payload, MongoDB Atlas, Cloudflare R2, Vercel, Calendly, Google Calendar/Google Meet, email delivery, analytics, and any future third-party service.
+
+Expected order:
+
+```text
+Brief phase preflight
+→ AI implements the integration or a testable scaffold
+→ AI inspects the actual code/config contract
+→ AI gives exact portal and environment instructions
+→ Owner creates/configures the external resource
+→ Owner adds values to local/Vercel environments
+→ AI verifies locally and in Preview
+→ Production configuration and deployment test
+```
+
+For purely visual or static work, the AI should proceed without waiting for external configuration.
+
 ## Design rules
 
 - Follow the YNA-inspired centered editorial experience closely.
