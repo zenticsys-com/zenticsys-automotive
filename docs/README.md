@@ -4,6 +4,8 @@ This directory is the source of truth for the Zenticsys Automotive website.
 
 Read [`PROJECT-BRAIN.md`](./PROJECT-BRAIN.md) before making design, content, architecture, or implementation decisions. Read [`AI-VIBE-CODING.md`](./AI-VIBE-CODING.md) before asking an AI coding agent to implement a phase.
 
+Read [`ENVIRONMENT-SETUP.md`](./ENVIRONMENT-SETUP.md) before configuring MongoDB Atlas, Cloudflare R2, Vercel, Calendly, Google Calendar, Google Meet, or email delivery.
+
 ## Phase order
 
 1. [Phase 00 — Content and design foundation](./phases/PHASE-00-CONTENT-DESIGN-FOUNDATION.md)

@@ -4,6 +4,8 @@
 
 Make the website editable without code while preserving the approved visual system.
 
+Before implementation, follow [`../ENVIRONMENT-SETUP.md`](../ENVIRONMENT-SETUP.md) for Payload, MongoDB Atlas, Cloudflare R2, Vercel environment variables, and secret handling.
+
 ## Work
 
 - Add Payload CMS to the Next.js application.

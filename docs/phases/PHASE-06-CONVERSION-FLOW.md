@@ -4,6 +4,8 @@
 
 Create the multiple contact paths and primary client-onboarding experience.
 
+Before implementation, follow [`../ENVIRONMENT-SETUP.md`](../ENVIRONMENT-SETUP.md) for Calendly and Google Calendar/Meet setup. The initial Calendly flow requires a public event URL, not a Calendly API token.
+
 ## Work
 
 - Build `/request-a-proposal` guided multi-step form.
