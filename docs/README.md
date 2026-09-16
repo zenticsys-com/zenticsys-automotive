@@ -19,3 +19,5 @@ Read [`ENVIRONMENT-SETUP.md`](./ENVIRONMENT-SETUP.md) before configuring MongoDB
 9. [Phase 08 — SEO, accessibility, performance, and launch](./phases/PHASE-08-SEO-QA-LAUNCH.md)
 
 Complete and test each phase before starting the next.
+
+Phase 00 planning artifacts are in [`foundation/`](./foundation/). Review [`OPEN-DECISIONS.md`](./foundation/OPEN-DECISIONS.md) before treating the phase as approved.
