@@ -331,6 +331,180 @@
   left: 23%;
 }
 
+/* Cinematic automotive ecosystem */
+
+.ecosystem-visual {
+  position: relative;
+  width: min(78rem, 98%);
+  aspect-ratio: 1672 / 941;
+  margin: clamp(4.5rem, 8vw, 7rem) auto 0;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 1.7rem;
+  background: #0c0f10;
+  box-shadow:
+    0 3rem 8rem rgb(0 0 0 / 48%),
+    0 0 5rem rgb(239 61 35 / 9%);
+  isolation: isolate;
+}
+
+.ecosystem-visual::before {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 4%);
+  content: "";
+  pointer-events: none;
+}
+
+.ecosystem-visual__image {
+  object-fit: cover;
+  filter: saturate(0.82) contrast(1.05) brightness(0.78);
+  transform: scale(1.012);
+  animation: ecosystem-breathe 14s alternate ease-in-out infinite;
+}
+
+.ecosystem-visual__wash {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(4 6 7 / 2%) 45%, rgb(4 6 7 / 68%)),
+    radial-gradient(circle at 46% 95%, rgb(239 61 35 / 18%), transparent 42%),
+    linear-gradient(90deg, rgb(4 6 7 / 18%), transparent 22%, transparent 78%, rgb(4 6 7 / 22%));
+}
+
+.ecosystem-visual__routes {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+  pointer-events: none;
+}
+
+.ecosystem-visual__routes path {
+  stroke: rgb(255 110 66 / 44%);
+  stroke-width: 2;
+  stroke-dasharray: 5 18;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 0.45rem rgb(239 61 35 / 60%));
+  animation: ecosystem-route 8s linear infinite;
+  vector-effect: non-scaling-stroke;
+}
+
+.ecosystem-visual__routes path:last-child {
+  stroke: rgb(73 191 187 / 30%);
+  stroke-dasharray: 3 24;
+  animation-duration: 11s;
+  animation-direction: reverse;
+}
+
+.ecosystem-visual__signals {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ecosystem-signal {
+  position: absolute;
+  display: inline-flex;
+  padding: 0.38rem 0.55rem;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 999px;
+  background: rgb(7 9 10 / 64%);
+  box-shadow: 0 0.8rem 2rem rgb(0 0 0 / 25%);
+  color: rgb(255 255 255 / 78%);
+  backdrop-filter: blur(10px);
+}
+
+.ecosystem-signal i {
+  position: relative;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: #ff7654;
+  box-shadow: 0 0 0.7rem rgb(239 61 35 / 88%);
+}
+
+.ecosystem-signal i::after {
+  position: absolute;
+  border: 1px solid rgb(255 118 84 / 70%);
+  border-radius: 50%;
+  content: "";
+  inset: -0.32rem;
+  animation: ecosystem-signal 2.4s ease-out infinite;
+}
+
+.ecosystem-signal small {
+  font-size: 0.58rem;
+  font-style: normal;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ecosystem-signal--dealership {
+  top: 17%;
+  left: 8%;
+}
+
+.ecosystem-signal--service {
+  top: 16%;
+  left: 43%;
+}
+
+.ecosystem-signal--fleet {
+  top: 24%;
+  left: 64%;
+}
+
+.ecosystem-signal--auction {
+  top: 15%;
+  right: 5%;
+}
+
+.ecosystem-visual__caption {
+  position: absolute;
+  z-index: 3;
+  right: clamp(1.25rem, 3vw, 2.5rem);
+  bottom: clamp(1.25rem, 3vw, 2.5rem);
+  display: block;
+  max-width: 29rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--brand-light);
+  color: var(--color-white);
+  text-align: left;
+  text-shadow: 0 0.2rem 1.2rem rgb(0 0 0 / 90%);
+}
+
+.ecosystem-visual__caption small,
+.ecosystem-visual__caption strong {
+  display: block;
+}
+
+.ecosystem-visual__caption small {
+  color: rgb(255 255 255 / 62%);
+  font-size: 0.6rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ecosystem-visual__caption strong {
+  margin-top: 0.4rem;
+  font-size: clamp(1.35rem, 2.4vw, 2.35rem);
+  font-weight: 570;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
 /* Shared homepage sections */
 
 .home-section {
@@ -1220,6 +1394,25 @@
   to { left: 105%; }
 }
 
+@keyframes ecosystem-breathe {
+  to { transform: scale(1.035); }
+}
+
+@keyframes ecosystem-route {
+  to { stroke-dashoffset: -184; }
+}
+
+@keyframes ecosystem-signal {
+  from {
+    opacity: 0.75;
+    transform: scale(0.45);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
 @media (max-width: 1023px) {
   .home-hero {
     min-height: 66rem;
@@ -1308,6 +1501,48 @@
 
   .home-hero__intro {
     font-size: 0.98rem;
+  }
+
+  .ecosystem-visual {
+    width: 100%;
+    margin-top: 4rem;
+    border-radius: 1.1rem;
+  }
+
+  .ecosystem-signal {
+    padding: 0.3rem;
+  }
+
+  .ecosystem-signal small {
+    display: none;
+  }
+
+  .ecosystem-signal--dealership {
+    left: 7%;
+  }
+
+  .ecosystem-signal--service {
+    left: 42%;
+  }
+
+  .ecosystem-signal--fleet {
+    left: 64%;
+  }
+
+  .ecosystem-visual__caption {
+    right: 0.85rem;
+    bottom: 0.85rem;
+    left: 0.85rem;
+    max-width: 18rem;
+    padding-left: 0.7rem;
+  }
+
+  .ecosystem-visual__caption small {
+    font-size: 0.5rem;
+  }
+
+  .ecosystem-visual__caption strong {
+    font-size: clamp(1rem, 5vw, 1.3rem);
   }
 
   .system-visual {
@@ -1597,8 +1832,14 @@
   }
 
   .system-visual__glow,
+  .ecosystem-signal i::after,
   .workflow-track__line::after {
     display: none;
+  }
+
+  .ecosystem-visual__image,
+  .ecosystem-visual__routes path {
+    animation: none;
   }
 
   .operations-chart span {

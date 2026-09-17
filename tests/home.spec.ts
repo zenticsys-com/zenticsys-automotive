@@ -64,18 +64,26 @@ test("publishes homepage metadata and Organization structured data", async ({
   expect(organization.knowsAbout).toContain("Automotive software development");
 });
 
-test("keeps content imagery decorative and product visuals labelled", async ({
+test("keeps editorial imagery decorative and meaningful visuals labelled", async ({
   page,
 }) => {
   await page.goto("/");
 
-  const images = page.locator("main img");
+  const images = page.locator("main img:not(.ecosystem-visual__image)");
   const imageCount = await images.count();
 
   expect(imageCount).toBeGreaterThan(0);
   for (let index = 0; index < imageCount; index += 1) {
     await expect(images.nth(index)).toHaveAttribute("alt", "");
   }
+
+  await expect(page.locator(".ecosystem-visual__image")).toHaveAttribute(
+    "alt",
+    /dealership, service workshop, vehicle fleet, and live auction/i,
+  );
+  await expect(
+    page.getByText("From showroom to service, fleet, and auction."),
+  ).toBeAttached();
 
   await expect(
     page.getByLabel("Representative CarVu workflow interface illustration"),
@@ -134,7 +142,7 @@ test("separates operation imagery and presentation from solution cards", async (
   expect(operationSources.some((source) => solutionSources.includes(source))).toBeFalsy();
 
   const fleetSelector = page.locator(".audience-selector__item").nth(1);
-  await fleetSelector.hover();
+  await fleetSelector.focus();
   await expect(fleetSelector).toHaveClass(/is-active/);
   await expect(page.locator(".audience-stage img").nth(1)).toHaveClass(/is-active/);
 });

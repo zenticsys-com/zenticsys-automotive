@@ -65,6 +65,12 @@ Build the modern, centered, automotive homepage that explains the full range of 
 - Added a branded homepage title, description, canonical, Open Graph metadata,
   and Organization JSON-LD.
 - Kept every section, link, heading, and structured-data block server-rendered.
+- Replaced the abstract dashboard beneath the hero copy with an original,
+  cinematic automotive ecosystem scene spanning dealership, service, fleet,
+  and auction operations. A lightweight SVG route layer and restrained signal
+  markers communicate digital connection without presenting the agency as only
+  a SaaS-platform builder. The previous dashboard component remains available
+  in the repository while this direction is evaluated.
 
 ## Assets
 

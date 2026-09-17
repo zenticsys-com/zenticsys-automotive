@@ -7,6 +7,7 @@ Zenticsys client work.
 
 | File | Usage | Source and creator | License | Concerns / treatment |
 |---|---|---|---|---|
+| `automotive-ecosystem-hero.jpg` | Homepage hero-support ecosystem scene | Original asset generated for Zenticsys with OpenAI image generation on 2026-09-17 | Project-generated asset | Depicts a fictional, unbranded showroom, workshop, fleet, and automotive auction; no real client work or partnership is implied |
 | `fleet-aerial.jpg` | Inventory, dealership, fleet, and marketplace cards | [Michał Lis on Unsplash](https://unsplash.com/photos/aerial-view-of-cars-parked-on-parking-lot-during-daytime-CgqQUoQSGTY) | [Unsplash License](https://unsplash.com/license); attribution not required | Generic aerial vehicle scene; dark overlay and crop |
 | `service-workshop.jpg` | Service center and maintenance cards | [Lorenzo Fustaino on Unsplash](https://unsplash.com/photos/mechanic-working-on-cars-in-a-dimly-lit-garage-WbKt-WmdMf8) | [Unsplash License](https://unsplash.com/license); attribution not required | Person and vehicles visible; no endorsement implied; dark crop |
 | `highway-light-trails.jpg` | Hero support, auction, and motion storytelling | [Viktor Friesen on Unsplash](https://unsplash.com/photos/light-trails-on-a-highway-at-night-fitOIovGirU) | [Unsplash License](https://unsplash.com/license); attribution not required | No recognizable person or brand; warm color grade |
