@@ -65,6 +65,21 @@ needs it and pass serializable props from its Server Component parent.
 - Phase 03 adds no new Client Component boundary; the focused menu island from
   Phase 02 remains the only hydrated homepage interaction.
 
+## Phase 03.1 boundary audit
+
+- `PageAtmosphere` is now a focused Client Component because it observes active
+  server-rendered sections and updates a decorative palette attribute.
+- `MotionReveal` is a Client Component wrapper around server-rendered children.
+  It emits visible content during SSR and progressively prepares only
+  below-the-fold presentation after hydration.
+- `HeroRouteMorph` is a decorative Client Component; the semantic hero heading
+  remains server-rendered HTML outside the SVG.
+- `MenuOverlay` remains the existing interaction island and now uses Motion for
+  coordinated entry/exit. Navigation destinations also remain available in the
+  server-rendered global footer.
+- No route, long-form section, metadata component, content collection, or
+  marketing-copy component was converted to a Client Component.
+
 Important headings, links, and marketing copy must be present in initial HTML.
 Animations may enhance that HTML but must never be responsible for fetching or
 revealing indexable content.

@@ -3,6 +3,7 @@ import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { AutomotiveSystemVisual } from "@/components/marketing/automotive-system-visual";
+import { HeroRouteMorph } from "@/components/marketing/hero-route-morph";
 import {
   AudienceGallery,
   CapabilitySection,
@@ -13,6 +14,7 @@ import {
   WorkflowStory,
 } from "@/components/marketing/home-sections";
 import { OrganizationJsonLd } from "@/components/seo/organization-json-ld";
+import { MotionReveal } from "@/components/motion/motion-reveal";
 import { Container } from "@/components/ui/container";
 
 export const metadata: Metadata = {
@@ -35,7 +37,12 @@ export default function Home() {
     <main className="home-page">
       <OrganizationJsonLd />
 
-      <section className="home-hero entrance-reveal" aria-labelledby="home-title">
+      <section
+        className="home-hero entrance-reveal"
+        aria-labelledby="home-title"
+        data-atmosphere="brand"
+      >
+        <HeroRouteMorph />
         <Container className="home-hero__inner">
           <p className="section-kicker">Automotive digital specialists</p>
           <h1 id="home-title">
@@ -61,15 +68,17 @@ export default function Home() {
         </Container>
       </section>
 
-      <div id="who-we-help">
-        <AudienceGallery />
-      </div>
-      <SolutionGallery />
-      <WorkflowStory />
-      <CarVuFeature />
-      <CapabilitySection />
-      <InsightsPreview />
-      <HomeProposalCta />
+      <MotionReveal>
+        <div id="who-we-help">
+          <AudienceGallery />
+        </div>
+      </MotionReveal>
+      <MotionReveal><SolutionGallery /></MotionReveal>
+      <MotionReveal><WorkflowStory /></MotionReveal>
+      <MotionReveal><CarVuFeature /></MotionReveal>
+      <MotionReveal><CapabilitySection /></MotionReveal>
+      <MotionReveal><InsightsPreview /></MotionReveal>
+      <MotionReveal><HomeProposalCta /></MotionReveal>
     </main>
   );
 }

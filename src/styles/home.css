@@ -11,6 +11,20 @@
   align-items: start;
 }
 
+.hero-route-morph {
+  position: absolute;
+  z-index: 0;
+  top: 8rem;
+  left: 50%;
+  width: min(74rem, 112vw);
+  height: 30rem;
+  overflow: visible;
+  filter: drop-shadow(0 0 1.5rem rgb(239 61 35 / 28%));
+  opacity: 0.74;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
 .home-hero::before {
   position: absolute;
   top: 32rem;
@@ -27,6 +41,7 @@
 
 .home-hero__inner {
   position: relative;
+  z-index: 1;
   text-align: center;
 }
 
@@ -478,7 +493,7 @@
 /* Solution gallery */
 
 .solution-section {
-  background: #0f1113;
+  background: rgb(15 17 19 / 88%);
 }
 
 .solution-grid {
@@ -569,7 +584,7 @@
 .workflow-section {
   background:
     radial-gradient(circle at 8% 58%, rgb(239 61 35 / 12%), transparent 30%),
-    #0b0d0e;
+    rgb(11 13 14 / 88%);
 }
 
 .workflow-track {
@@ -639,7 +654,7 @@
 /* CarVu */
 
 .carvu-section {
-  background: #101315;
+  background: rgb(16 19 21 / 89%);
 }
 
 .carvu-card {
@@ -875,7 +890,7 @@
 /* Capabilities and proof */
 
 .capability-section {
-  background: #0a0c0d;
+  background: rgb(10 12 13 / 89%);
 }
 
 .capability-grid {
@@ -965,7 +980,7 @@
 .insights-section {
   background:
     radial-gradient(circle at 15% 45%, rgb(20 121 127 / 13%), transparent 28%),
-    #0e1112;
+    rgb(14 17 18 / 88%);
 }
 
 .insights-grid {
@@ -1041,7 +1056,7 @@
   position: relative;
   z-index: 1;
   padding: var(--section-space) 0;
-  background: #090b0c;
+  background: rgb(9 11 12 / 88%);
 }
 
 .home-proposal__card {

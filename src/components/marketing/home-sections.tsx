@@ -15,7 +15,7 @@ import { audiences, capabilities, insights, solutions } from "@/content/home";
 
 export function AudienceGallery() {
   return (
-    <section className="home-section audience-section" aria-labelledby="audience-title">
+    <section className="home-section audience-section" aria-labelledby="audience-title" data-atmosphere="amber">
       <Container>
         <div className="section-heading section-heading--split">
           <div>
@@ -59,7 +59,7 @@ export function AudienceGallery() {
 
 export function SolutionGallery() {
   return (
-    <section className="home-section solution-section" aria-labelledby="solutions-title">
+    <section className="home-section solution-section" aria-labelledby="solutions-title" data-atmosphere="petrol">
       <Container>
         <div className="section-heading section-heading--centered">
           <p className="section-kicker">What we build</p>
@@ -106,7 +106,7 @@ export function WorkflowStory() {
   ] as const;
 
   return (
-    <section className="home-section workflow-section" aria-labelledby="workflow-title">
+    <section className="home-section workflow-section" aria-labelledby="workflow-title" data-atmosphere="brand">
       <Container>
         <div className="section-heading section-heading--split">
           <div>
@@ -137,7 +137,7 @@ export function WorkflowStory() {
 
 export function CarVuFeature() {
   return (
-    <section className="home-section carvu-section" aria-labelledby="carvu-title">
+    <section className="home-section carvu-section" aria-labelledby="carvu-title" data-atmosphere="ember">
       <Container>
         <div className="carvu-card">
           <div className="carvu-card__copy">
@@ -184,7 +184,7 @@ export function CarVuFeature() {
 
 export function CapabilitySection() {
   return (
-    <section className="home-section capability-section" aria-labelledby="capability-title">
+    <section className="home-section capability-section" aria-labelledby="capability-title" data-atmosphere="steel">
       <Container>
         <div className="section-heading section-heading--split">
           <div>
@@ -219,7 +219,7 @@ export function CapabilitySection() {
 
 export function InsightsPreview() {
   return (
-    <section className="home-section insights-section" aria-labelledby="insights-title">
+    <section className="home-section insights-section" aria-labelledby="insights-title" data-atmosphere="teal">
       <Container>
         <div className="section-heading section-heading--inline">
           <div><p className="section-kicker">Automotive insights</p><h2 id="insights-title">Thinking beyond the interface.</h2></div>
@@ -245,7 +245,7 @@ export function InsightsPreview() {
 
 export function HomeProposalCta() {
   return (
-    <section className="home-proposal" aria-labelledby="home-proposal-title">
+    <section className="home-proposal" aria-labelledby="home-proposal-title" data-atmosphere="amber">
       <Container>
         <div className="home-proposal__card">
           <Gauge aria-hidden="true" className="home-proposal__icon" />

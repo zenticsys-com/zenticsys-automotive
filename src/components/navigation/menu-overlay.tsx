@@ -2,7 +2,8 @@
 
 import { DismissableLayer } from "@radix-ui/react-dismissable-layer";
 import { FocusScope } from "@radix-ui/react-focus-scope";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { RemoveScroll } from "react-remove-scroll";
@@ -12,6 +13,41 @@ import { ScheduleCallLink } from "@/components/ui/schedule-call-link";
 import { primaryNavigation, projectNavigation } from "@/lib/navigation";
 
 const menuId = "site-menu-panel";
+const premiumEase = [0.22, 1, 0.36, 1] as const;
+
+const linkVariants = {
+  closed: {
+    opacity: 0,
+    y: 18,
+    filter: "blur(6px)",
+    transition: { duration: 0.16, ease: [0.4, 0, 0.2, 1] as const },
+  },
+  open: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.32, ease: premiumEase },
+  },
+};
+
+type MenuGlyphProps = {
+  open: boolean;
+};
+
+function MenuGlyph({ open }: MenuGlyphProps) {
+  return (
+    <span className="menu-glyph" aria-hidden="true">
+      <motion.span
+        animate={open ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.35, ease: premiumEase }}
+      />
+      <motion.span
+        animate={open ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.35, ease: premiumEase }}
+      />
+    </span>
+  );
+}
 
 type MenuPanelProps = {
   onClose: () => void;
@@ -20,7 +56,7 @@ type MenuPanelProps = {
 function MenuPanel({ onClose }: MenuPanelProps) {
   return (
     <div className="menu-panel__inner">
-      <div className="menu-panel__topbar">
+      <motion.div className="menu-panel__topbar" variants={linkVariants}>
         <SiteLogo onNavigate={onClose} />
         <button
           type="button"
@@ -28,28 +64,30 @@ function MenuPanel({ onClose }: MenuPanelProps) {
           onClick={onClose}
           aria-label="Close menu"
         >
-          <X aria-hidden="true" size={20} />
+          <MenuGlyph open />
         </button>
-      </div>
+      </motion.div>
 
       <div className="menu-panel__content">
         <div>
-          <p className="menu-eyebrow">Navigate</p>
+          <motion.p className="menu-eyebrow" variants={linkVariants}>
+            Navigate
+          </motion.p>
           <nav aria-label="Primary navigation">
-            <ul className="menu-links" role="list">
-              {primaryNavigation.map((item, index) => (
-                <li key={item.href} style={{ "--menu-index": index } as React.CSSProperties}>
+            <motion.ul className="menu-links" role="list">
+              {primaryNavigation.map((item) => (
+                <motion.li key={item.href} variants={linkVariants}>
                   <Link href={item.href} onClick={onClose}>
                     <span>{item.label}</span>
                     <ArrowUpRight aria-hidden="true" size={22} />
                   </Link>
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </nav>
         </div>
 
-        <div className="menu-panel__aside">
+        <motion.div className="menu-panel__aside" variants={linkVariants}>
           <p className="menu-eyebrow">Start a project</p>
           <p className="menu-panel__prompt">
             Have an automotive product, platform, or website in motion?
@@ -64,13 +102,13 @@ function MenuPanel({ onClose }: MenuPanelProps) {
                 </Link>
               ))}
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="menu-panel__footer">
+      <motion.div className="menu-panel__footer" variants={linkVariants}>
         <a href="mailto:info@zenticsys.com">info@zenticsys.com</a>
         <span>Automotive digital products</span>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -78,8 +116,44 @@ function MenuPanel({ onClose }: MenuPanelProps) {
 export function MenuOverlay() {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const reduceMotion = useReducedMotion();
 
   const closeMenu = () => setOpen(false);
+  const duration = reduceMotion ? 0.01 : 0.56;
+
+  const panelVariants = {
+    closed: {
+      opacity: 0,
+      scaleX: reduceMotion ? 1 : 0.2,
+      scaleY: reduceMotion ? 1 : 0.08,
+      x: reduceMotion ? 0 : "34%",
+      y: reduceMotion ? 0 : -12,
+      borderRadius: reduceMotion ? 18 : 30,
+      filter: reduceMotion ? "blur(0px)" : "blur(9px)",
+      transition: {
+        duration: reduceMotion ? 0.01 : 0.42,
+        ease: [0.4, 0, 0.2, 1] as const,
+        when: "afterChildren" as const,
+        staggerChildren: reduceMotion ? 0 : 0.025,
+        staggerDirection: -1,
+      },
+    },
+    open: {
+      opacity: 1,
+      scaleX: 1,
+      scaleY: 1,
+      x: 0,
+      y: 0,
+      borderRadius: 18,
+      filter: "blur(0px)",
+      transition: {
+        duration,
+        ease: premiumEase,
+        delayChildren: reduceMotion ? 0 : 0.12,
+        staggerChildren: reduceMotion ? 0 : 0.04,
+      },
+    },
+  };
 
   return (
     <>
@@ -92,59 +166,53 @@ export function MenuOverlay() {
         aria-label="Open menu"
         onClick={() => setOpen(true)}
       >
-        <Menu aria-hidden="true" size={20} />
+        <MenuGlyph open={open} />
       </button>
 
-      <div
-        className="menu-overlay"
-        data-state={open ? "open" : "closed"}
-        aria-hidden="true"
-        onPointerDown={closeMenu}
-      />
-
-      {open ? (
-        <RemoveScroll enabled allowPinchZoom>
-          <FocusScope
-            trapped
-            loop
-            onUnmountAutoFocus={(event) => {
-              event.preventDefault();
-              triggerRef.current?.focus();
-            }}
-          >
-            <DismissableLayer
-              asChild
-              disableOutsidePointerEvents
-              onEscapeKeyDown={closeMenu}
-              onPointerDownOutside={closeMenu}
-            >
-              <section
-                id={menuId}
-                className="menu-panel"
-                data-state="open"
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="site-menu-title"
-              >
-                <h2 id="site-menu-title" className="visually-hidden">
-                  Site navigation
-                </h2>
-                <MenuPanel onClose={closeMenu} />
-              </section>
-            </DismissableLayer>
-          </FocusScope>
-        </RemoveScroll>
-      ) : (
-        <section
-          id={menuId}
-          className="menu-panel"
-          data-state="closed"
-          aria-hidden="true"
-          inert
-        >
-          <MenuPanel onClose={closeMenu} />
-        </section>
-      )}
+      <AnimatePresence
+        initial={false}
+        onExitComplete={() => triggerRef.current?.focus()}
+      >
+        {open ? (
+          <RemoveScroll enabled allowPinchZoom>
+            <div className="menu-motion-root">
+              <motion.div
+                className="menu-overlay"
+                initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+                animate={{ opacity: 1, backdropFilter: "blur(14px)" }}
+                exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.38 }}
+                onPointerDown={closeMenu}
+              />
+              <FocusScope trapped loop>
+                <DismissableLayer
+                  asChild
+                  disableOutsidePointerEvents
+                  onEscapeKeyDown={closeMenu}
+                  onPointerDownOutside={closeMenu}
+                >
+                  <motion.section
+                    id={menuId}
+                    className="menu-panel"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="site-menu-title"
+                    initial="closed"
+                    animate="open"
+                    exit="closed"
+                    variants={panelVariants}
+                  >
+                    <h2 id="site-menu-title" className="visually-hidden">
+                      Site navigation
+                    </h2>
+                    <MenuPanel onClose={closeMenu} />
+                  </motion.section>
+                </DismissableLayer>
+              </FocusScope>
+            </div>
+          </RemoveScroll>
+        ) : null}
+      </AnimatePresence>
     </>
   );
 }

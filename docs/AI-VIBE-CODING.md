@@ -58,6 +58,13 @@ For purely visual or static work, the AI should proceed without waiting for exte
 - Keep the minimal logo + glass Schedule a Call + Menu header.
 - Keep the centered expanding menu overlay.
 - Make the running border a moving perimeter highlight, not a pulse.
+- Use section-level `data-atmosphere` markers so the fixed global light can
+  transition with the content.
+- Keep animated marketing copy in initial server HTML; motion is progressive
+  enhancement, never the content delivery mechanism.
+- Keep decorative hero SVG animation separate from semantic heading text.
+- Menu transitions must animate both entry and exit while preserving focus and
+  reduced-motion behavior.
 - Use graphite, off-white, and Zenticsys orange-red.
 - Make every page and section recognizably automotive.
 - Keep listing cards minimal; put detail on detail pages.
