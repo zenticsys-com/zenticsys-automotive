@@ -50,6 +50,7 @@
 
 html {
   min-height: 100%;
+  overflow-y: auto;
   background: var(--background);
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
@@ -130,23 +131,39 @@ textarea {
   width: 100%;
   padding: 1rem var(--page-gutter) 0;
   pointer-events: none;
-  animation: header-arrive 650ms 100ms both cubic-bezier(0.22, 1, 0.36, 1);
+  animation: header-arrive 650ms 100ms backwards cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header__inner {
+  position: relative;
   display: flex;
   width: min(100%, 44rem);
   min-height: var(--header-height);
   margin-inline: auto;
   padding: 0.65rem 0.72rem 0.65rem 1rem;
+  overflow: hidden;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 1.15rem;
-  background: rgb(10 12 13 / 68%);
+  background: transparent;
   box-shadow: 0 1rem 4rem rgb(0 0 0 / 22%);
   pointer-events: auto;
+}
+
+.site-header__glass {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  background: rgb(5 6 7 / 68%);
+  pointer-events: none;
+}
+
+.site-header__inner > :not(.site-header__glass) {
+  position: relative;
+  z-index: 1;
 }
 
 .site-logo {

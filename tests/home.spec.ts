@@ -90,11 +90,22 @@ test("keeps editorial imagery decorative and meaningful visuals labelled", async
   await expect(
     page.getByText("One industry, connected at every turn."),
   ).toBeAttached();
+  await expect(page.locator(".journey-gallery")).toBeHidden();
   await expect(page.locator(".journey-road")).toHaveAttribute("aria-hidden", "true");
 
   await expect(
     page.getByLabel("Representative CarVu workflow interface illustration"),
   ).toBeAttached();
+  expect(
+    await page.locator(".audience-stage").evaluate((element) =>
+      getComputedStyle(element).position,
+    ),
+  ).toBe("relative");
+  expect(
+    await page.locator(".audience-mobile-media").evaluateAll((elements) =>
+      elements.map((element) => getComputedStyle(element).position),
+    ),
+  ).toEqual(Array(6).fill("absolute"));
   expect(fillPositionWarnings).toEqual([]);
 });
 

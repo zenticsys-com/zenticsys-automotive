@@ -33,7 +33,7 @@ const journeyStations = [
 
 export function AutomotiveJourneyGallery() {
   return (
-    <figure className="journey-gallery">
+    <figure className="journey-gallery" hidden>
       <figcaption className="journey-gallery__heading">
         <small>Across the automotive lifecycle</small>
         <strong>One industry, connected at every turn.</strong>

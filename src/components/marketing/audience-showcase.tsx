@@ -54,7 +54,11 @@ export function AudienceShowcase({ items }: { items: readonly AudienceItem[] }) 
             onMouseEnter={() => setActiveIndex(index)}
             onFocus={() => setActiveIndex(index)}
           >
-            <span className="audience-mobile-media" aria-hidden="true">
+            <span
+              className="audience-mobile-media"
+              aria-hidden="true"
+              style={{ position: "absolute" }}
+            >
               <Image
                 src={item.image}
                 alt=""

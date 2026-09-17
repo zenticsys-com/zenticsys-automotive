@@ -59,6 +59,8 @@ test("keeps the header and page width stable while the menu locks scrolling", as
     page.evaluate(() => {
       const headerElement =
         document.querySelector<HTMLElement>(".site-header__inner")!;
+      const glassElement =
+        document.querySelector<HTMLElement>(".site-header__glass")!;
       const header = headerElement.getBoundingClientRect();
 
       return {
@@ -66,21 +68,44 @@ test("keeps the header and page width stable while the menu locks scrolling", as
         headerWidth: header.width,
         documentWidth: document.documentElement.clientWidth,
         gutter: getComputedStyle(document.documentElement).scrollbarGutter,
-        headerBlur: getComputedStyle(headerElement).backdropFilter,
+        rootOverflow: getComputedStyle(document.documentElement).overflowY,
+        bodyOverflow: getComputedStyle(document.body).overflowY,
+        headerBackground: getComputedStyle(glassElement).backgroundColor,
+        headerBlur: getComputedStyle(glassElement).backdropFilter,
       };
     });
 
   const closed = await measureShell();
   expect(closed.gutter).toContain("stable");
-  expect(closed.headerBlur).toContain("blur(14px)");
+  expect(closed.headerBlur).toContain("blur(28px)");
+  expect(closed.headerBackground).toBe("rgba(5, 6, 7, 0.68)");
 
   await page.getByRole("button", { name: "Open menu" }).click();
   await expect(page.getByRole("dialog", { name: "Site navigation" })).toBeVisible();
+  await expect
+    .poll(() =>
+      page.locator(".menu-overlay").evaluate((element) =>
+        getComputedStyle(element).backdropFilter,
+      ),
+    )
+    .toContain("blur(28px)");
   const open = await measureShell();
+  const overlayGlass = await page.locator(".menu-overlay").evaluate((element) => {
+    const styles = getComputedStyle(element);
+    return {
+      background: styles.backgroundColor,
+      blur: styles.backdropFilter,
+    };
+  });
+  expect(open.headerBackground).toBe(overlayGlass.background);
+  expect(open.headerBlur).toBe(overlayGlass.blur);
+  expect(open.rootOverflow).toBe("hidden");
+  expect(open.bodyOverflow).not.toBe("hidden");
 
   await page.getByRole("button", { name: "Close menu" }).click();
   await expect(page.locator(".menu-motion-root")).toHaveCount(0);
   const closedAgain = await measureShell();
+  expect(closedAgain.rootOverflow).toBe("auto");
 
   for (const measurement of [open, closedAgain]) {
     expect(Math.abs(measurement.headerLeft - closed.headerLeft)).toBeLessThan(1);

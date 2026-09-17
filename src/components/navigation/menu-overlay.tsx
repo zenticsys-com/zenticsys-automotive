@@ -5,8 +5,8 @@ import { FocusScope } from "@radix-ui/react-focus-scope";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
-import { useRef, useState } from "react";
-import { RemoveScroll } from "react-remove-scroll";
+import type { ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { SiteLogo } from "@/components/layout/site-logo";
 import { ScheduleCallLink } from "@/components/ui/schedule-call-link";
@@ -14,6 +14,21 @@ import { primaryNavigation, projectNavigation } from "@/lib/navigation";
 
 const menuId = "site-menu-panel";
 const premiumEase = [0.22, 1, 0.36, 1] as const;
+
+function MenuScrollLock({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    const root = document.documentElement;
+    const previousOverflow = root.style.overflow;
+
+    root.style.overflow = "hidden";
+
+    return () => {
+      root.style.overflow = previousOverflow;
+    };
+  }, []);
+
+  return children;
+}
 
 const linkVariants = {
   closed: {
@@ -174,12 +189,12 @@ export function MenuOverlay() {
         onExitComplete={() => triggerRef.current?.focus()}
       >
         {open ? (
-          <RemoveScroll enabled allowPinchZoom>
+          <MenuScrollLock>
             <div className="menu-motion-root">
               <motion.div
                 className="menu-overlay"
                 initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-                animate={{ opacity: 1, backdropFilter: "blur(14px)" }}
+                animate={{ opacity: 1, backdropFilter: "blur(28px)" }}
                 exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
                 transition={{ duration: reduceMotion ? 0.01 : 0.38 }}
                 onPointerDown={closeMenu}
@@ -210,7 +225,7 @@ export function MenuOverlay() {
                 </DismissableLayer>
               </FocusScope>
             </div>
-          </RemoveScroll>
+          </MenuScrollLock>
         ) : null}
       </AnimatePresence>
     </>
