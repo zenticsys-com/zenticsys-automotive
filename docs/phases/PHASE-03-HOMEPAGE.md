@@ -72,6 +72,11 @@ Build the modern, centered, automotive homepage that explains the full range of 
   License, then added six solution-specific photographs under the Pexels
   License so every What We Build card depicts its actual automotive context.
   These visuals are not represented as Zenticsys client work.
+- Added a separate set of six operation-specific photographs for the audience
+  section. None are reused by What We Build. The repeated card mosaic was
+  replaced with an image-and-selector composition on larger screens and a
+  horizontal editorial rail on mobile, making “who we serve” visually distinct
+  from “what we build.”
 - Source, creator, usage, and license details are recorded in
   `docs/assets/HOMEPAGE-ASSET-REGISTRY.md`.
 - No third-party logo, proprietary screenshot, or YNA asset/source code was

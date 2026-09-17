@@ -111,3 +111,30 @@ test("uses distinct, solution-specific imagery in What We Build", async ({
     expect(imageSources.some((source) => source.includes(fileName))).toBeTruthy();
   }
 });
+
+test("separates operation imagery and presentation from solution cards", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const operationSources = await page
+    .locator(".audience-stage img")
+    .evaluateAll((images) =>
+      images.map((image) => decodeURIComponent(image.getAttribute("src") ?? "")),
+    );
+  const solutionSources = await page
+    .locator(".solution-card img")
+    .evaluateAll((images) =>
+      images.map((image) => decodeURIComponent(image.getAttribute("src") ?? "")),
+    );
+
+  expect(operationSources).toHaveLength(6);
+  expect(new Set(operationSources).size).toBe(6);
+  expect(operationSources.every((source) => source.includes("operation-"))).toBeTruthy();
+  expect(operationSources.some((source) => solutionSources.includes(source))).toBeFalsy();
+
+  const fleetSelector = page.locator(".audience-selector__item").nth(1);
+  await fleetSelector.hover();
+  await expect(fleetSelector).toHaveClass(/is-active/);
+  await expect(page.locator(".audience-stage img").nth(1)).toHaveClass(/is-active/);
+});

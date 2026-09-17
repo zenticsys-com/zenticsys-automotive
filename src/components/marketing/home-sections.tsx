@@ -10,6 +10,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
+import { AudienceShowcase } from "@/components/marketing/audience-showcase";
 import { Container } from "@/components/ui/container";
 import { audiences, capabilities, insights, solutions } from "@/content/home";
 
@@ -29,29 +30,7 @@ export function AudienceGallery() {
           </p>
         </div>
 
-        <div className="audience-grid">
-          {audiences.map((audience, index) => (
-            <Link
-              key={audience.title}
-              href={audience.href}
-              className={`audience-card audience-card--${index + 1}`}
-            >
-              <Image
-                src={audience.image}
-                alt=""
-                fill
-                sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
-                style={{ objectPosition: audience.position }}
-              />
-              <span className="audience-card__wash" />
-              <span className="audience-card__content">
-                <strong>{audience.title}</strong>
-                <small>{audience.description}</small>
-              </span>
-              <ArrowUpRight aria-hidden="true" className="audience-card__arrow" size={20} />
-            </Link>
-          ))}
-        </div>
+        <AudienceShowcase items={audiences} />
       </Container>
     </section>
   );

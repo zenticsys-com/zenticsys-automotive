@@ -1,8 +1,9 @@
 # Homepage Asset Registry
 
-Recorded on 2026-09-17. The four original Unsplash assets and six
-solution-specific Pexels assets are stored locally at 1800px width. They are
-used as editorial photography, not as evidence of Zenticsys client work.
+Recorded on 2026-09-17. The four original atmospheric assets, six
+operation-specific assets, and six solution-specific assets are stored locally
+at 1800px width. They are used as editorial photography, not as evidence of
+Zenticsys client work.
 
 | File | Usage | Source and creator | License | Concerns / treatment |
 |---|---|---|---|---|
@@ -10,6 +11,12 @@ used as editorial photography, not as evidence of Zenticsys client work.
 | `service-workshop.jpg` | Service center and maintenance cards | [Lorenzo Fustaino on Unsplash](https://unsplash.com/photos/mechanic-working-on-cars-in-a-dimly-lit-garage-WbKt-WmdMf8) | [Unsplash License](https://unsplash.com/license); attribution not required | Person and vehicles visible; no endorsement implied; dark crop |
 | `highway-light-trails.jpg` | Hero support, auction, and motion storytelling | [Viktor Friesen on Unsplash](https://unsplash.com/photos/light-trails-on-a-highway-at-night-fitOIovGirU) | [Unsplash License](https://unsplash.com/license); attribution not required | No recognizable person or brand; warm color grade |
 | `night-road-network.jpg` | Fleet, systems, and Insights cards | [Ignacio Moreira on Unsplash](https://unsplash.com/photos/an-aerial-view-of-a-highway-intersection-at-night-TMNG4DQdzns) | [Unsplash License](https://unsplash.com/license); attribution not required | No recognizable person or brand; petrol/orange overlays |
+| `operation-dealership.jpg` | Dealership audience selector | [Antoni Shkraba on Pexels](https://www.pexels.com/photo/photo-of-a-salesman-talking-to-a-customer-7144226/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Sales consultation beside a vehicle; people are contextual and imply no endorsement |
+| `operation-fleet.jpg` | Fleet operator audience selector | [Shuaizhi Tian on Pexels](https://www.pexels.com/photo/trucks-parked-on-a-parking-lot-20882742/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Commercial fleet lineup; incidental vehicle/company marks are darkened and imply no endorsement |
+| `operation-service.jpg` | Service centre audience selector | [Jose Ricardo Barraza Morachis on Pexels](https://www.pexels.com/photo/mechanics-working-with-cars-4116231/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Active repair workshop; people and vehicle marks are incidental and imply no endorsement |
+| `operation-parts.jpg` | Parts business audience selector | [Mike van Schoonderwalt on Pexels](https://www.pexels.com/photo/engine-parts-on-shelves-in-car-workshop-5506059/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Automotive components and parts operation; dark grade unifies it with the suite |
+| `operation-marketplace.jpg` | Vehicle marketplace audience selector | [Giant Asparagus on Pexels](https://www.pexels.com/photo/aerial-view-of-a-car-lot-with-rows-of-vehicles-35627355/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Large used-vehicle inventory communicates marketplace scale; no endorsement implied |
+| `operation-auction.jpg` | Auction company audience selector | [Savannah Bolton on Unsplash](https://unsplash.com/photos/classic-car-displayed-at-an-auction-event-F_lOA4Y-N3Y) | [Unsplash License](https://unsplash.com/license); attribution not required | Live automotive auction; event and vehicle marks are incidental, darkened, and imply no endorsement |
 | `solution-dealership.jpg` | Dealership websites solution card | [Omar Ramadan on Pexels](https://www.pexels.com/photo/cars-at-a-car-dealership-25857424/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Genuine indoor dealership context; vehicle and dealer marks are incidental, heavily darkened, and imply no endorsement |
 | `solution-fleet.jpg` | Fleet management solution card | [Robert So on Pexels](https://www.pexels.com/photo/cars-in-the-parking-lot-11725734/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Commercial fleet lineup; right-weighted crop and dark grade reduce incidental company/vehicle marks |
 | `solution-parts.jpg` | Parts ecommerce solution card | [Giona Mason on Pexels](https://www.pexels.com/photo/engine-of-a-car-18180575/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Close engine/component detail; no endorsement implied |
