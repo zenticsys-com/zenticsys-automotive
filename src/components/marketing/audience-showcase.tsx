@@ -19,7 +19,11 @@ export function AudienceShowcase({ items }: { items: readonly AudienceItem[] }) 
 
   return (
     <div className="audience-showcase">
-      <div className="audience-stage" aria-hidden="true">
+      <div
+        className="audience-stage"
+        aria-hidden="true"
+        style={{ position: "relative" }}
+      >
         {items.map((item, index) => (
           <Image
             key={item.image}

@@ -32,7 +32,7 @@ export function HeroRouteMorph() {
         stroke="url(#hero-route-gradient)"
         strokeWidth="2"
         vectorEffect="non-scaling-stroke"
-        initial={false}
+        initial={{ d: routePath, pathLength: 0.2, opacity: 0.2 }}
         animate={
           reduceMotion
             ? { d: routePath, pathLength: 1, opacity: 0.38 }

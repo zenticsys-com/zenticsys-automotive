@@ -8,7 +8,8 @@ Build the modern, centered, automotive homepage that explains the full range of 
 
 ## Work
 
-- Build the no-split hero: centered headline, supporting message, CTAs, animated gradient atmosphere, and automotive system visual.
+- Build the no-split hero: centered headline, supporting message, CTAs,
+  animated gradient atmosphere, and connected automotive road gallery.
 - Add automotive business-type visual gallery.
 - Add “What We Build” solution gallery with minimal image-led cards.
 - Add animated website → dealer/operations → admin/platform workflow story.
@@ -65,12 +66,16 @@ Build the modern, centered, automotive homepage that explains the full range of 
 - Added a branded homepage title, description, canonical, Open Graph metadata,
   and Organization JSON-LD.
 - Kept every section, link, heading, and structured-data block server-rendered.
-- Replaced the abstract dashboard beneath the hero copy with an original,
-  cinematic automotive ecosystem scene spanning dealership, service, fleet,
-  and auction operations. A lightweight SVG route layer and restrained signal
-  markers communicate digital connection without presenting the agency as only
-  a SaaS-platform builder. The previous dashboard component remains available
-  in the repository while this direction is evaluated.
+- Replaced the abstract dashboard beneath the hero copy with a narrow road
+  gallery using four separately sourced stock photographs: dealership, service,
+  commercial fleet, and live automotive auction. The four equal-size frames
+  use mirrored outer silhouettes plus opposing leaf shapes for the middle
+  pair. Their compact inner copy is clipped to each silhouette, and a flexible
+  track maintains equal breathing room between every frame. They sit over a
+  lightweight animated SVG road, communicating connection without
+  presenting Zenticsys as only a SaaS-platform builder. On small screens the
+  gallery becomes horizontally scrollable. The earlier dashboard component
+  remains available in the repository if this direction is reconsidered.
 
 ## Assets
 

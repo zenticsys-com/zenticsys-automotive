@@ -1,17 +1,20 @@
 # Homepage Asset Registry
 
-Recorded on 2026-09-17. The four original atmospheric assets, six
-operation-specific assets, and six solution-specific assets are stored locally
-at 1800px width. They are used as editorial photography, not as evidence of
-Zenticsys client work.
+Recorded on 2026-09-17. The four original atmospheric assets, four journey
+gallery assets, six operation-specific assets, and six solution-specific assets
+are stored locally at 1800px width. They are used as editorial photography, not
+as evidence of Zenticsys client work.
 
 | File | Usage | Source and creator | License | Concerns / treatment |
 |---|---|---|---|---|
-| `automotive-ecosystem-hero.jpg` | Homepage hero-support ecosystem scene | Original asset generated for Zenticsys with OpenAI image generation on 2026-09-17 | Project-generated asset | Depicts a fictional, unbranded showroom, workshop, fleet, and automotive auction; no real client work or partnership is implied |
 | `fleet-aerial.jpg` | Inventory, dealership, fleet, and marketplace cards | [Michał Lis on Unsplash](https://unsplash.com/photos/aerial-view-of-cars-parked-on-parking-lot-during-daytime-CgqQUoQSGTY) | [Unsplash License](https://unsplash.com/license); attribution not required | Generic aerial vehicle scene; dark overlay and crop |
 | `service-workshop.jpg` | Service center and maintenance cards | [Lorenzo Fustaino on Unsplash](https://unsplash.com/photos/mechanic-working-on-cars-in-a-dimly-lit-garage-WbKt-WmdMf8) | [Unsplash License](https://unsplash.com/license); attribution not required | Person and vehicles visible; no endorsement implied; dark crop |
 | `highway-light-trails.jpg` | Hero support, auction, and motion storytelling | [Viktor Friesen on Unsplash](https://unsplash.com/photos/light-trails-on-a-highway-at-night-fitOIovGirU) | [Unsplash License](https://unsplash.com/license); attribution not required | No recognizable person or brand; warm color grade |
 | `night-road-network.jpg` | Fleet, systems, and Insights cards | [Ignacio Moreira on Unsplash](https://unsplash.com/photos/an-aerial-view-of-a-highway-intersection-at-night-TMNG4DQdzns) | [Unsplash License](https://unsplash.com/license); attribution not required | No recognizable person or brand; petrol/orange overlays |
+| `journey-dealership.jpg` | Hero road gallery: dealership station | [Gustavo Fring on Pexels](https://www.pexels.com/photo/man-and-woman-looking-at-cars-6817017/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Real showroom interaction; signage and vehicle marks are incidental, darkened, and imply no endorsement |
+| `journey-service.jpg` | Hero road gallery: service station | [Renee Razumov on Pexels](https://www.pexels.com/photo/mechanic-working-on-car-in-auto-workshop-33814735/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Active professional repair bay; incidental vehicle marks imply no endorsement |
+| `journey-fleet.jpg` | Hero road gallery: fleet station | [Tom Fisk on Pexels](https://www.pexels.com/photo/aerial-photography-of-parked-trucks-3245123/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Aerial commercial fleet pattern communicates operational scale |
+| `journey-auction.jpg` | Hero road gallery: auction station | [Savannah Bolton on Unsplash](https://unsplash.com/photos/a-teal-classic-car-drives-across-an-auction-stage-S_pNlyjSOKU) | [Unsplash License](https://unsplash.com/license); attribution not required | Live automotive auction; event and vehicle marks are incidental, darkened, and imply no endorsement |
 | `operation-dealership.jpg` | Dealership audience selector | [Antoni Shkraba on Pexels](https://www.pexels.com/photo/photo-of-a-salesman-talking-to-a-customer-7144226/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Sales consultation beside a vehicle; people are contextual and imply no endorsement |
 | `operation-fleet.jpg` | Fleet operator audience selector | [Shuaizhi Tian on Pexels](https://www.pexels.com/photo/trucks-parked-on-a-parking-lot-20882742/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Commercial fleet lineup; incidental vehicle/company marks are darkened and imply no endorsement |
 | `operation-service.jpg` | Service centre audience selector | [Jose Ricardo Barraza Morachis on Pexels](https://www.pexels.com/photo/mechanics-working-with-cars-4116231/) | [Pexels License](https://www.pexels.com/license/); attribution not required | Active repair workshop; people and vehicle marks are incidental and imply no endorsement |

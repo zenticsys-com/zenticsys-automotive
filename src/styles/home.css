@@ -42,6 +42,8 @@
 .home-hero__inner {
   position: relative;
   z-index: 1;
+  width: 100%;
+  min-width: 0;
   text-align: center;
 }
 
@@ -331,53 +333,74 @@
   left: 23%;
 }
 
-/* Cinematic automotive ecosystem */
+/* Connected automotive road gallery */
 
-.ecosystem-visual {
+.journey-gallery {
+  width: 100%;
+  max-width: 78rem;
+  min-width: 0;
+  margin: clamp(3.5rem, 6vw, 5rem) auto 0;
+}
+
+.journey-gallery__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  text-align: left;
+}
+
+.journey-gallery__heading small,
+.journey-gallery__heading strong {
+  display: block;
+}
+
+.journey-gallery__heading small {
+  color: var(--brand-light);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.journey-gallery__heading strong {
+  max-width: 18ch;
+  color: var(--color-white);
+  font-size: clamp(1.45rem, 2.5vw, 2.45rem);
+  font-weight: 570;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  text-align: right;
+}
+
+.journey-gallery__viewport {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 1.25rem;
+  overflow-x: auto;
+  border-top: 1px solid rgb(255 255 255 / 8%);
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+  scrollbar-width: none;
+}
+
+.journey-gallery__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.journey-gallery__track {
   position: relative;
-  width: min(78rem, 98%);
-  aspect-ratio: 1672 / 941;
-  margin: clamp(4.5rem, 8vw, 7rem) auto 0;
-  overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 12%);
-  border-radius: 1.7rem;
-  background: #0c0f10;
-  box-shadow:
-    0 3rem 8rem rgb(0 0 0 / 48%),
-    0 0 5rem rgb(239 61 35 / 9%);
-  isolation: isolate;
+  display: flex;
+  width: 100%;
+  min-width: 72rem;
+  height: 19rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-inline: 1.5%;
 }
 
-.ecosystem-visual::before {
+.journey-road {
   position: absolute;
-  z-index: 3;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 4%);
-  content: "";
-  pointer-events: none;
-}
-
-.ecosystem-visual__image {
-  object-fit: cover;
-  filter: saturate(0.82) contrast(1.05) brightness(0.78);
-  transform: scale(1.012);
-  animation: ecosystem-breathe 14s alternate ease-in-out infinite;
-}
-
-.ecosystem-visual__wash {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgb(4 6 7 / 2%) 45%, rgb(4 6 7 / 68%)),
-    radial-gradient(circle at 46% 95%, rgb(239 61 35 / 18%), transparent 42%),
-    linear-gradient(90deg, rgb(4 6 7 / 18%), transparent 22%, transparent 78%, rgb(4 6 7 / 22%));
-}
-
-.ecosystem-visual__routes {
-  position: absolute;
-  z-index: 2;
+  z-index: 0;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -386,123 +409,175 @@
   pointer-events: none;
 }
 
-.ecosystem-visual__routes path {
-  stroke: rgb(255 110 66 / 44%);
-  stroke-width: 2;
-  stroke-dasharray: 5 18;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 0.45rem rgb(239 61 35 / 60%));
-  animation: ecosystem-route 8s linear infinite;
+.journey-road__edge {
+  stroke: rgb(255 255 255 / 10%);
+  stroke-width: 13;
   vector-effect: non-scaling-stroke;
 }
 
-.ecosystem-visual__routes path:last-child {
-  stroke: rgb(73 191 187 / 30%);
-  stroke-dasharray: 3 24;
-  animation-duration: 11s;
-  animation-direction: reverse;
+.journey-road__line {
+  stroke: rgb(255 103 64 / 72%);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 16;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 0.45rem rgb(239 61 35 / 72%));
+  animation: journey-road-travel 7s linear infinite;
+  vector-effect: non-scaling-stroke;
 }
 
-.ecosystem-visual__signals {
-  position: absolute;
-  z-index: 3;
-  inset: 0;
-  pointer-events: none;
-}
-
-.ecosystem-signal {
-  position: absolute;
-  display: inline-flex;
-  padding: 0.38rem 0.55rem;
-  align-items: center;
-  gap: 0.4rem;
-  border: 1px solid rgb(255 255 255 / 14%);
-  border-radius: 999px;
-  background: rgb(7 9 10 / 64%);
-  box-shadow: 0 0.8rem 2rem rgb(0 0 0 / 25%);
-  color: rgb(255 255 255 / 78%);
-  backdrop-filter: blur(10px);
-}
-
-.ecosystem-signal i {
+.journey-station {
   position: relative;
-  width: 0.35rem;
-  height: 0.35rem;
-  border-radius: 50%;
-  background: #ff7654;
-  box-shadow: 0 0 0.7rem rgb(239 61 35 / 88%);
+  z-index: 1;
+  width: 16rem;
+  height: 11rem;
+  flex: 0 0 16rem;
+  filter: drop-shadow(0 1.4rem 2rem rgb(0 0 0 / 42%));
+  transition: z-index 0s, transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.ecosystem-signal i::after {
-  position: absolute;
-  border: 1px solid rgb(255 118 84 / 70%);
-  border-radius: 50%;
-  content: "";
-  inset: -0.32rem;
-  animation: ecosystem-signal 2.4s ease-out infinite;
-}
-
-.ecosystem-signal small {
-  font-size: 0.58rem;
-  font-style: normal;
-  font-weight: 650;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.ecosystem-signal--dealership {
-  top: 17%;
-  left: 8%;
-}
-
-.ecosystem-signal--service {
-  top: 16%;
-  left: 43%;
-}
-
-.ecosystem-signal--fleet {
-  top: 24%;
-  left: 64%;
-}
-
-.ecosystem-signal--auction {
-  top: 15%;
-  right: 5%;
-}
-
-.ecosystem-visual__caption {
-  position: absolute;
+.journey-station:hover {
   z-index: 3;
-  right: clamp(1.25rem, 3vw, 2.5rem);
-  bottom: clamp(1.25rem, 3vw, 2.5rem);
-  display: block;
-  max-width: 29rem;
-  padding-left: 1rem;
-  border-left: 2px solid var(--brand-light);
+  transform: translateY(-0.35rem);
+}
+
+.journey-station__surface,
+.journey-station__media {
+  position: absolute;
+  inset: 0;
+}
+
+.journey-station__surface {
+  overflow: hidden;
+}
+
+.journey-station__media {
+  background: #111416;
+}
+
+.journey-station__media img {
+  object-fit: cover;
+  filter: saturate(0.66) contrast(1.08) brightness(0.62);
+  transition: filter 450ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.journey-station:hover .journey-station__media img {
+  filter: saturate(0.82) contrast(1.05) brightness(0.74);
+  transform: scale(1.045);
+}
+
+.journey-station__wash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(5 7 8 / 3%) 35%, rgb(5 7 8 / 92%)),
+    radial-gradient(circle at 12% 92%, rgb(239 61 35 / 28%), transparent 48%);
+}
+
+.journey-station__copy {
+  position: absolute;
+  z-index: 2;
+  right: 1.15rem;
+  bottom: 1.05rem;
+  left: 1.15rem;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 0.75rem;
   color: var(--color-white);
   text-align: left;
-  text-shadow: 0 0.2rem 1.2rem rgb(0 0 0 / 90%);
 }
 
-.ecosystem-visual__caption small,
-.ecosystem-visual__caption strong {
-  display: block;
+.journey-station__copy small {
+  color: rgb(255 255 255 / 58%);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
-.ecosystem-visual__caption small {
-  color: rgb(255 255 255 / 62%);
-  font-size: 0.6rem;
-  font-weight: 650;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.ecosystem-visual__caption strong {
-  margin-top: 0.4rem;
-  font-size: clamp(1.35rem, 2.4vw, 2.35rem);
-  font-weight: 570;
-  letter-spacing: -0.045em;
+.journey-station__copy strong {
+  max-width: 8.25rem;
+  font-size: 0.92rem;
+  font-weight: 620;
+  letter-spacing: -0.025em;
   line-height: 1.05;
+  text-align: right;
+}
+
+.journey-station__node {
+  position: absolute;
+  z-index: 3;
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 2px solid #191c1e;
+  border-radius: 50%;
+  background: var(--brand-light);
+  box-shadow:
+    0 0 0 0.28rem rgb(239 61 35 / 18%),
+    0 0 1rem rgb(239 61 35 / 68%);
+}
+
+.journey-station--dealership {
+  margin-top: 3.4rem;
+}
+
+.journey-station--dealership .journey-station__surface {
+  border-radius: 1rem 1rem 1rem 6rem;
+}
+
+.journey-station--dealership .journey-station__node {
+  right: -0.25rem;
+  bottom: 1.2rem;
+}
+
+.journey-station--service {
+  margin-top: 1rem;
+}
+
+.journey-station--service .journey-station__surface {
+  border-radius: 7rem 1rem 7rem 1rem;
+}
+
+.journey-station--service .journey-station__copy {
+  right: 3.35rem;
+  align-items: start;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.journey-station--service .journey-station__copy strong {
+  max-width: none;
+  text-align: left;
+}
+
+.journey-station--service .journey-station__node {
+  right: 1rem;
+  bottom: -0.25rem;
+}
+
+.journey-station--fleet {
+  margin-top: 5.2rem;
+}
+
+.journey-station--fleet .journey-station__surface {
+  border-radius: 1rem 7rem 1rem 7rem;
+}
+
+.journey-station--fleet .journey-station__node {
+  top: -0.25rem;
+  left: 48%;
+}
+
+.journey-station--auction {
+  margin-top: 2rem;
+}
+
+.journey-station--auction .journey-station__surface {
+  border-radius: 1rem 6rem 1rem 1rem;
+}
+
+.journey-station--auction .journey-station__node {
+  bottom: -0.25rem;
+  left: 1.4rem;
 }
 
 /* Shared homepage sections */
@@ -1394,23 +1469,8 @@
   to { left: 105%; }
 }
 
-@keyframes ecosystem-breathe {
-  to { transform: scale(1.035); }
-}
-
-@keyframes ecosystem-route {
-  to { stroke-dashoffset: -184; }
-}
-
-@keyframes ecosystem-signal {
-  from {
-    opacity: 0.75;
-    transform: scale(0.45);
-  }
-  to {
-    opacity: 0;
-    transform: scale(1.45);
-  }
+@keyframes journey-road-travel {
+  to { stroke-dashoffset: -152; }
 }
 
 @media (max-width: 1023px) {
@@ -1503,46 +1563,36 @@
     font-size: 0.98rem;
   }
 
-  .ecosystem-visual {
-    width: 100%;
-    margin-top: 4rem;
-    border-radius: 1.1rem;
+  .journey-gallery {
+    margin-top: 3.5rem;
   }
 
-  .ecosystem-signal {
-    padding: 0.3rem;
+  .journey-gallery__heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.65rem;
   }
 
-  .ecosystem-signal small {
-    display: none;
+  .journey-gallery__heading strong {
+    max-width: 15ch;
+    font-size: 1.65rem;
+    text-align: left;
   }
 
-  .ecosystem-signal--dealership {
-    left: 7%;
+  .journey-gallery__viewport {
+    cursor: grab;
+    overscroll-behavior-inline: contain;
   }
 
-  .ecosystem-signal--service {
-    left: 42%;
+  .journey-gallery__track {
+    min-width: 70rem;
+    height: 17rem;
   }
 
-  .ecosystem-signal--fleet {
-    left: 64%;
-  }
-
-  .ecosystem-visual__caption {
-    right: 0.85rem;
-    bottom: 0.85rem;
-    left: 0.85rem;
-    max-width: 18rem;
-    padding-left: 0.7rem;
-  }
-
-  .ecosystem-visual__caption small {
-    font-size: 0.5rem;
-  }
-
-  .ecosystem-visual__caption strong {
-    font-size: clamp(1rem, 5vw, 1.3rem);
+  .journey-station {
+    width: 14.5rem;
+    height: 10rem;
+    flex-basis: 14.5rem;
   }
 
   .system-visual {
@@ -1832,14 +1882,17 @@
   }
 
   .system-visual__glow,
-  .ecosystem-signal i::after,
   .workflow-track__line::after {
     display: none;
   }
 
-  .ecosystem-visual__image,
-  .ecosystem-visual__routes path {
+  .journey-road__line {
     animation: none;
+  }
+
+  .journey-station,
+  .journey-station__media img {
+    transition: none;
   }
 
   .operations-chart span {

@@ -49,6 +49,46 @@ test("supports keyboard open, focus containment, Escape, and focus return", asyn
   await expect(trigger).toBeFocused();
 });
 
+test("keeps the header and page width stable while the menu locks scrolling", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.waitForLoadState("networkidle");
+
+  const measureShell = () =>
+    page.evaluate(() => {
+      const headerElement =
+        document.querySelector<HTMLElement>(".site-header__inner")!;
+      const header = headerElement.getBoundingClientRect();
+
+      return {
+        headerLeft: header.left,
+        headerWidth: header.width,
+        documentWidth: document.documentElement.clientWidth,
+        gutter: getComputedStyle(document.documentElement).scrollbarGutter,
+        headerBlur: getComputedStyle(headerElement).backdropFilter,
+      };
+    });
+
+  const closed = await measureShell();
+  expect(closed.gutter).toContain("stable");
+  expect(closed.headerBlur).toContain("blur(14px)");
+
+  await page.getByRole("button", { name: "Open menu" }).click();
+  await expect(page.getByRole("dialog", { name: "Site navigation" })).toBeVisible();
+  const open = await measureShell();
+
+  await page.getByRole("button", { name: "Close menu" }).click();
+  await expect(page.locator(".menu-motion-root")).toHaveCount(0);
+  const closedAgain = await measureShell();
+
+  for (const measurement of [open, closedAgain]) {
+    expect(Math.abs(measurement.headerLeft - closed.headerLeft)).toBeLessThan(1);
+    expect(Math.abs(measurement.headerWidth - closed.headerWidth)).toBeLessThan(1);
+    expect(measurement.documentWidth).toBe(closed.documentWidth);
+  }
+});
+
 test("provides a static reduced-motion treatment", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");

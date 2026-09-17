@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
-import { AutomotiveEcosystemVisual } from "@/components/marketing/automotive-ecosystem-visual";
+import { AutomotiveJourneyGallery } from "@/components/marketing/automotive-journey-gallery";
 import { HeroRouteMorph } from "@/components/marketing/hero-route-morph";
 import {
   AudienceGallery,
@@ -61,7 +61,7 @@ export default function Home() {
               Explore Solutions <ArrowDownRight aria-hidden="true" size={18} />
             </Link>
           </div>
-          <AutomotiveEcosystemVisual />
+          <AutomotiveJourneyGallery />
           <a className="home-hero__scroll" href="#who-we-help">
             <span>See who we help</span><ArrowDownRight aria-hidden="true" size={16} />
           </a>
