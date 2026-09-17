@@ -1,45 +1,75 @@
+import type { Metadata } from "next";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
+import { AutomotiveSystemVisual } from "@/components/marketing/automotive-system-visual";
+import {
+  AudienceGallery,
+  CapabilitySection,
+  CarVuFeature,
+  HomeProposalCta,
+  InsightsPreview,
+  SolutionGallery,
+  WorkflowStory,
+} from "@/components/marketing/home-sections";
+import { OrganizationJsonLd } from "@/components/seo/organization-json-ld";
 import { Container } from "@/components/ui/container";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Automotive Websites, Platforms & Custom Software | Zenticsys",
+  },
+  description:
+    "Zenticsys builds dealership websites, fleet systems, service platforms, parts ecommerce, marketplaces, auctions, and custom software for automotive businesses.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Automotive Websites, Platforms & Custom Software | Zenticsys",
+    description:
+      "Digital products for businesses that sell, service, manage, and move vehicles.",
+    url: "/",
+  },
+};
 
 export default function Home() {
   return (
-    <main className="shell-preview entrance-reveal">
-      <Container className="shell-preview__inner">
-        <p className="section-kicker">Automotive digital specialists</p>
-        <h1>Built for automotive motion.</h1>
-        <p className="shell-preview__intro">
-          Zenticsys designs websites, platforms, and connected software for the
-          businesses behind every vehicle journey.
-        </p>
+    <main className="home-page">
+      <OrganizationJsonLd />
 
-        <div className="shell-preview__actions">
-          <Link href="/request-a-proposal" className="primary-link">
-            Request a Proposal
-            <ArrowUpRight aria-hidden="true" size={18} />
-          </Link>
-          <Link href="/solutions" className="text-link">
-            Explore Solutions
-            <ArrowDownRight aria-hidden="true" size={18} />
-          </Link>
-        </div>
-
-        <div className="automotive-signal" aria-hidden="true">
-          <span className="automotive-signal__line" />
-          <div className="automotive-signal__nodes">
-            <span>Inventory</span>
-            <span>Fleet</span>
-            <span>Service</span>
-            <span>Auction</span>
+      <section className="home-hero entrance-reveal" aria-labelledby="home-title">
+        <Container className="home-hero__inner">
+          <p className="section-kicker">Automotive digital specialists</p>
+          <h1 id="home-title">
+            We build the digital systems that keep automotive businesses moving.
+          </h1>
+          <p className="home-hero__intro">
+            Dealership websites, fleet systems, service platforms, parts
+            ecommerce, marketplaces, auctions, and enterprise automotive
+            software—designed as one connected experience.
+          </p>
+          <div className="home-hero__actions">
+            <Link href="/request-a-proposal" className="primary-link">
+              Request a Proposal <ArrowUpRight aria-hidden="true" size={18} />
+            </Link>
+            <Link href="/solutions" className="text-link">
+              Explore Solutions <ArrowDownRight aria-hidden="true" size={18} />
+            </Link>
           </div>
-        </div>
+          <AutomotiveSystemVisual />
+          <a className="home-hero__scroll" href="#who-we-help">
+            <span>See who we help</span><ArrowDownRight aria-hidden="true" size={16} />
+          </a>
+        </Container>
+      </section>
 
-        <p className="shell-preview__note">
-          Shared design system preview — homepage composition follows in Phase
-          03.
-        </p>
-      </Container>
+      <div id="who-we-help">
+        <AudienceGallery />
+      </div>
+      <SolutionGallery />
+      <WorkflowStory />
+      <CarVuFeature />
+      <CapabilitySection />
+      <InsightsPreview />
+      <HomeProposalCta />
     </main>
   );
 }

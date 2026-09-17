@@ -7,6 +7,7 @@ import { PageAtmosphere } from "@/components/marketing/page-atmosphere";
 import { siteConfig } from "@/lib/site";
 
 import "./globals.css";
+import "@/styles/home.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

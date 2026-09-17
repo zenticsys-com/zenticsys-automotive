@@ -51,6 +51,20 @@ needs it and pass serializable props from its Server Component parent.
 - CSS handles the running border, atmosphere, entrance, and reduced-motion
   treatment without adding animation JavaScript
 
+## Phase 03 boundary audit
+
+- `src/app/page.tsx` and every homepage marketing section remain Server
+  Components.
+- Homepage content is supplied by a static typed content module and rendered in
+  the initial HTML; no client fetch or hydration is needed to reveal it.
+- Organization JSON-LD is emitted by a Server Component.
+- The hero system visual and representative CarVu interface are semantic
+  HTML/CSS illustrations rather than canvas or client-rendered applications.
+- Gallery hover effects, workflow movement, atmosphere, and chart entrance are
+  CSS-only and have reduced-motion fallbacks.
+- Phase 03 adds no new Client Component boundary; the focused menu island from
+  Phase 02 remains the only hydrated homepage interaction.
+
 Important headings, links, and marketing copy must be present in initial HTML.
 Animations may enhance that HTML but must never be responsible for fetching or
 revealing indexable content.

@@ -4,8 +4,10 @@ These decisions should be resolved before Phase 00 is marked complete.
 
 ## Business/content decisions
 
-- [ ] Select the final homepage headline.
-- [ ] Approve the one-sentence positioning statement.
+- [x] Select the final homepage headline: “We build the digital systems that
+  keep automotive businesses moving.”
+- [x] Approve the one-sentence positioning statement documented in the content
+  map and implemented on the homepage.
 - [ ] Confirm the public name and disclosure level for CarVu.
 - [ ] Confirm which CarVu screenshots can be published.
 - [ ] Confirm whether any other projects can be shown.
@@ -26,7 +28,8 @@ These decisions should be resolved before Phase 00 is marked complete.
 - [x] Confirmed and reused the owned light Zenticsys wordmark for the dark header.
 - [ ] Confirm gradient accent sequence and animation speed.
 - [ ] Confirm card corner radius and maximum card width.
-- [ ] Confirm final hero automotive visual direction.
+- [x] Confirm final hero automotive visual direction: an original code-built
+  connected automotive system interface, not a split-layout stock image.
 - [ ] Confirm whether the running border is enabled on every Schedule a Call button or only the header/menu CTA.
 
 ## Infrastructure decisions deferred to later phases
