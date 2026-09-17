@@ -22,8 +22,8 @@ These decisions should be resolved before Phase 00 is marked complete.
 
 ## Design decisions
 
-- [ ] Confirm the final font pairing.
-- [ ] Confirm whether the logo has a usable light version for the dark header.
+- [x] Use Geist Sans as the primary family and Geist Mono for technical accents.
+- [x] Confirmed and reused the owned light Zenticsys wordmark for the dark header.
 - [ ] Confirm gradient accent sequence and animation speed.
 - [ ] Confirm card corner radius and maximum card width.
 - [ ] Confirm final hero automotive visual direction.

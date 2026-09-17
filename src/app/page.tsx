@@ -1,18 +1,45 @@
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+
+import { Container } from "@/components/ui/container";
+
 export default function Home() {
   return (
-    <main className="grid min-h-screen place-items-center px-6 py-24 text-center">
-      <div>
-        <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-muted">
-          Application foundation
+    <main className="shell-preview entrance-reveal">
+      <Container className="shell-preview__inner">
+        <p className="section-kicker">Automotive digital specialists</p>
+        <h1>Built for automotive motion.</h1>
+        <p className="shell-preview__intro">
+          Zenticsys designs websites, platforms, and connected software for the
+          businesses behind every vehicle journey.
         </p>
-        <h1 className="text-4xl font-semibold tracking-[-0.04em] sm:text-6xl">
-          Zenticsys Automotive
-        </h1>
-        <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg">
-          The server-rendered foundation is ready. The full automotive design
-          system begins in Phase 02.
+
+        <div className="shell-preview__actions">
+          <Link href="/request-a-proposal" className="primary-link">
+            Request a Proposal
+            <ArrowUpRight aria-hidden="true" size={18} />
+          </Link>
+          <Link href="/solutions" className="text-link">
+            Explore Solutions
+            <ArrowDownRight aria-hidden="true" size={18} />
+          </Link>
+        </div>
+
+        <div className="automotive-signal" aria-hidden="true">
+          <span className="automotive-signal__line" />
+          <div className="automotive-signal__nodes">
+            <span>Inventory</span>
+            <span>Fleet</span>
+            <span>Service</span>
+            <span>Auction</span>
+          </div>
+        </div>
+
+        <p className="shell-preview__note">
+          Shared design system preview — homepage composition follows in Phase
+          03.
         </p>
-      </div>
+      </Container>
     </main>
   );
 }

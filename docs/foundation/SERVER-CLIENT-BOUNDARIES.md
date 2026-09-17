@@ -39,6 +39,18 @@ needs it and pass serializable props from its Server Component parent.
 - `src/app/error.tsx`: Client Component because Next.js error boundaries require it
 - `src/lib/site.ts`: server/build configuration; do not import it into a Client Component
 
+## Phase 02 boundary audit
+
+- `src/app/layout.tsx`: Server Component composing the shared shell
+- `SiteHeader`, `SiteFooter`, `SiteLogo`, `PageAtmosphere`, `Container`, and
+  `ScheduleCallLink`: Server Components by default
+- `MenuOverlay`: focused Client Component for open state, focus containment,
+  Escape/outside dismissal, focus return, and scroll locking
+- Closed-menu navigation anchors remain in the server-rendered HTML and become
+  inert and visually hidden until the trigger is activated
+- CSS handles the running border, atmosphere, entrance, and reduced-motion
+  treatment without adding animation JavaScript
+
 Important headings, links, and marketing copy must be present in initial HTML.
 Animations may enhance that HTML but must never be responsible for fetching or
 revealing indexable content.
