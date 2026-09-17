@@ -82,6 +82,7 @@ export function SolutionGallery() {
                 alt=""
                 fill
                 sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 34vw"
+                style={{ objectPosition: solution.position }}
               />
               <span className="solution-card__overlay" />
               <span className="solution-card__copy">

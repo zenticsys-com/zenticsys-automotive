@@ -81,3 +81,33 @@ test("keeps content imagery decorative and product visuals labelled", async ({
     page.getByLabel("Representative CarVu workflow interface illustration"),
   ).toBeAttached();
 });
+
+test("uses distinct, solution-specific imagery in What We Build", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const expectedImages = [
+    "solution-dealership.jpg",
+    "solution-fleet.jpg",
+    "service-workshop.jpg",
+    "solution-parts.jpg",
+    "solution-marketplace.jpg",
+    "solution-auction.jpg",
+    "solution-custom-software.jpg",
+  ];
+  const imageSources = await page
+    .locator(".solution-card img")
+    .evaluateAll((images) =>
+      images.map((image) =>
+        decodeURIComponent(image.getAttribute("src") ?? ""),
+      ),
+    );
+
+  expect(imageSources).toHaveLength(expectedImages.length);
+  expect(new Set(imageSources).size).toBe(expectedImages.length);
+
+  for (const fileName of expectedImages) {
+    expect(imageSources.some((source) => source.includes(fileName))).toBeTruthy();
+  }
+});

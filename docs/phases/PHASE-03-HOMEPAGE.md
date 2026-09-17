@@ -68,9 +68,10 @@ Build the modern, centered, automotive homepage that explains the full range of 
 
 ## Assets
 
-- Added four locally stored editorial photographs sourced under the Unsplash
-  License. They are atmospheric visuals and are not represented as Zenticsys
-  client work.
+- Added four locally stored atmospheric photographs sourced under the Unsplash
+  License, then added six solution-specific photographs under the Pexels
+  License so every What We Build card depicts its actual automotive context.
+  These visuals are not represented as Zenticsys client work.
 - Source, creator, usage, and license details are recorded in
   `docs/assets/HOMEPAGE-ASSET-REGISTRY.md`.
 - No third-party logo, proprietary screenshot, or YNA asset/source code was
