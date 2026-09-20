@@ -132,3 +132,58 @@ Google Meet configuration remains Phase 06.
 - Phase-specific tests pass at 320px, 768px, 1024px, and 1440px widths.
 - Desktop and mobile visual inspection was completed for both listing and
   detail patterns.
+
+## Phase 04.1 — Distinct detail-page compositions
+
+The original Phase 04 implementation correctly varied the content but used one
+shared visual template for both route families. Phase 04.1 separates them into
+two purpose-built Server Components.
+
+### Solution detail direction
+
+Solution pages retain the product-oriented editorial structure:
+
+- Business problem and operational pain points
+- Product capabilities
+- Connected end-to-end workflow
+- Representative operational interface
+- System integrations
+- Business outcomes and staged implementation
+
+The implementation is provided by `SolutionDetail`. These pages should feel
+like examining how an automotive digital product would work.
+
+### Service detail direction
+
+Service pages now use a delivery-partner structure and a visibly different
+composition:
+
+- Asymmetric text-and-image hero rather than a centered hero
+- Project-fit signals
+- Focused engagement, product delivery, and ongoing partnership options
+- Concrete service-specific deliverables
+- Staggered collaboration stages
+- Representative delivery/readiness artifact instead of a product dashboard
+- Technical foundations and surrounding systems
+- Handover, ownership, support, and continuity outcomes
+- Related automotive solutions, FAQs, and proposal CTA
+
+The implementation is provided by `ServiceDetail`. These pages should help a
+buyer evaluate how Zenticsys would engage and deliver—not mistake a service for
+another packaged solution.
+
+### Shared design system, not a shared page template
+
+Both route families continue to share the global navigation, footer,
+typography, color system, fixed atmosphere, CTA language, metadata, structured
+data, and small semantic patterns such as breadcrumbs and native FAQs. They do
+not share the main page composition.
+
+### Phase 04.1 configuration and verification
+
+- No external configuration or new environment variables are required.
+- No new dependency or client-side rendering boundary was introduced.
+- Both route families remain statically generated.
+- Tests explicitly assert that solution pages use the product narrative and
+  service pages use the engagement/delivery narrative.
+- Desktop and mobile visual inspection was repeated for the new service layout.

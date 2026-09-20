@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { CatalogDetail } from "@/components/marketing/catalog-detail";
+import { SolutionDetail } from "@/components/marketing/catalog-detail";
 import { CatalogDetailJsonLd } from "@/components/seo/catalog-json-ld";
 import { getSolution, solutionEntries } from "@/content/solutions-services";
 
@@ -47,8 +47,7 @@ export default async function SolutionDetailPage({
   return (
     <>
       <CatalogDetailJsonLd entry={entry} />
-      <CatalogDetail entry={entry} />
+      <SolutionDetail entry={entry} />
     </>
   );
 }
-

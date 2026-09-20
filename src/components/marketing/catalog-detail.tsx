@@ -33,12 +33,10 @@ function RelatedLinks({ entry }: { entry: CatalogEntry }) {
   );
 }
 
-export function CatalogDetail({ entry }: { entry: CatalogEntry }) {
-  const collection = entry.kind === "solution" ? "solutions" : "services";
-  const capabilityHeading =
-    entry.kind === "solution" ? "What the solution can include" : "What we deliver";
-  const workflowHeading =
-    entry.kind === "solution" ? "A connected operational workflow" : "How the work moves";
+export function SolutionDetail({ entry }: { entry: CatalogEntry }) {
+  const collection = "solutions";
+  const capabilityHeading = "What the solution can include";
+  const workflowHeading = "A connected operational workflow";
 
   return (
     <main className="detail-page">
@@ -288,4 +286,3 @@ export function CatalogDetail({ entry }: { entry: CatalogEntry }) {
     </main>
   );
 }
-

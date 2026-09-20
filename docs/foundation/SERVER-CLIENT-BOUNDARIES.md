@@ -84,8 +84,9 @@ needs it and pass serializable props from its Server Component parent.
 
 - `/solutions`, `/services`, and both dynamic detail route families are Server
   Components and are emitted as static HTML at build time.
-- `CatalogListing`, `CatalogDetail`, and the catalogue JSON-LD components are
-  Server Components with no browser-only state or client data fetching.
+- `CatalogListing`, `SolutionDetail`, `ServiceDetail`, and the catalogue
+  JSON-LD components are Server Components with no browser-only state or client
+  data fetching.
 - `src/content/solutions-services.ts` is a typed static source for this phase;
   it can be replaced by server-side Payload queries during Phase 07 without
   changing the public route contract.
@@ -94,6 +95,9 @@ needs it and pass serializable props from its Server Component parent.
   interaction island.
 - Listing and detail presentation is CSS-only. Phase 04 adds no Client
   Component boundary and no animation runtime usage.
+- Phase 04.1 separates solution and service composition without introducing a
+  shared client wrapper: both purpose-built detail components remain fully
+  server-rendered.
 
 Important headings, links, and marketing copy must be present in initial HTML.
 Animations may enhance that HTML but must never be responsible for fetching or

@@ -101,12 +101,26 @@ test("renders informative detail pages with unique metadata and structured conte
     await expect(page.getByRole("navigation", { name: "Breadcrumb" })).toContainText(
       entry.listingTitle,
     );
-    await expect(page.locator(".detail-capability-grid article")).toHaveCount(
-      entry.capabilities.length,
-    );
-    await expect(page.locator(".detail-workflow__track li")).toHaveCount(
-      entry.workflow.length,
-    );
+    if (entry.kind === "solution") {
+      await expect(page.locator(".detail-capability-grid article")).toHaveCount(
+        entry.capabilities.length,
+      );
+      await expect(page.locator(".detail-workflow__track li")).toHaveCount(
+        entry.workflow.length,
+      );
+      await expect(page.locator(".detail-page")).toHaveCount(1);
+      await expect(page.locator(".service-detail-page")).toHaveCount(0);
+    } else {
+      await expect(page.locator(".service-deliverables__list article")).toHaveCount(
+        entry.capabilities.length,
+      );
+      await expect(page.locator(".service-collaboration li")).toHaveCount(
+        entry.process.length,
+      );
+      await expect(page.locator(".service-engagement__grid article")).toHaveCount(3);
+      await expect(page.locator(".service-detail-page")).toHaveCount(1);
+      await expect(page.locator(".detail-page")).toHaveCount(0);
+    }
     await expect(page.locator(".detail-faq details")).toHaveCount(entry.faqs.length);
     await expect(
       page.getByRole("link", { name: /Request a Proposal/ }).last(),
@@ -119,6 +133,34 @@ test("renders informative detail pages with unique metadata and structured conte
       );
     expect(schemaTypes).toEqual(["Service", "BreadcrumbList", "FAQPage"]);
   }
+});
+
+test("uses distinct product and delivery-partner narratives", async ({ page }) => {
+  await page.goto("/solutions/dealership-websites");
+  await expect(
+    page.getByRole("heading", { level: 2, name: "A connected operational workflow" }),
+  ).toBeVisible();
+  await expect(page.locator(".product-concept")).toBeVisible();
+  await expect(page.locator(".service-engagement")).toHaveCount(0);
+
+  await page.goto("/services/automotive-website-development");
+  await expect(
+    page.getByRole("heading", {
+      level: 2,
+      name: "An engagement shaped around the decision or outcome.",
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { level: 2, name: "Concrete work your team can use." }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      level: 2,
+      name: "The work should remain useful after delivery.",
+    }),
+  ).toBeVisible();
+  await expect(page.locator(".service-output__status")).toBeVisible();
+  await expect(page.locator(".product-concept")).toHaveCount(0);
 });
 
 test("keeps listings and detail editorial layouts inside every target viewport", async ({

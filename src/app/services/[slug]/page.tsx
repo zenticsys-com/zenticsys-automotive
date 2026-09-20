@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { CatalogDetail } from "@/components/marketing/catalog-detail";
+import { ServiceDetail } from "@/components/marketing/service-detail";
 import { CatalogDetailJsonLd } from "@/components/seo/catalog-json-ld";
 import { getService, serviceEntries } from "@/content/solutions-services";
 
@@ -47,8 +47,7 @@ export default async function ServiceDetailPage({
   return (
     <>
       <CatalogDetailJsonLd entry={entry} />
-      <CatalogDetail entry={entry} />
+      <ServiceDetail entry={entry} />
     </>
   );
 }
-
