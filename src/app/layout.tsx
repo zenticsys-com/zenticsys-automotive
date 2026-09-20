@@ -8,6 +8,7 @@ import { siteConfig } from "@/lib/site";
 
 import "./globals.css";
 import "@/styles/home.css";
+import "@/styles/catalog.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

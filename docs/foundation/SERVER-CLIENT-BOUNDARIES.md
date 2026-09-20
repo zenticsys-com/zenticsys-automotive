@@ -80,6 +80,21 @@ needs it and pass serializable props from its Server Component parent.
 - No route, long-form section, metadata component, content collection, or
   marketing-copy component was converted to a Client Component.
 
+## Phase 04 boundary audit
+
+- `/solutions`, `/services`, and both dynamic detail route families are Server
+  Components and are emitted as static HTML at build time.
+- `CatalogListing`, `CatalogDetail`, and the catalogue JSON-LD components are
+  Server Components with no browser-only state or client data fetching.
+- `src/content/solutions-services.ts` is a typed static source for this phase;
+  it can be replaced by server-side Payload queries during Phase 07 without
+  changing the public route contract.
+- Native links, ordered lists, and `details`/`summary` elements provide the
+  catalogue navigation, workflows, and FAQs without adding another hydrated
+  interaction island.
+- Listing and detail presentation is CSS-only. Phase 04 adds no Client
+  Component boundary and no animation runtime usage.
+
 Important headings, links, and marketing copy must be present in initial HTML.
 Animations may enhance that HTML but must never be responsible for fetching or
 revealing indexable content.
