@@ -858,7 +858,7 @@
   margin: 0;
   overflow: hidden;
   border: 1px solid rgb(255 255 255 / 12%);
-  border-radius: 18rem 18rem 1.2rem 1.2rem;
+  border-radius: 1.2rem;
   background: #090b0c;
 }
 
@@ -996,7 +996,7 @@
   min-height: 25rem;
   padding: clamp(1.5rem, 3vw, 2.5rem);
   border: 1px solid rgb(255 255 255 / 11%);
-  border-radius: 12rem 12rem 1rem 1rem;
+  border-radius: 1rem;
   background:
     radial-gradient(circle at 50% 0%, rgb(239 61 35 / 20%), transparent 45%),
     rgb(14 17 18 / 72%);
@@ -1294,7 +1294,7 @@
 .service-related__case {
   padding: clamp(1.6rem, 4vw, 3rem);
   border: 1px solid rgb(255 255 255 / 12%);
-  border-radius: 1rem 8rem 1rem 1rem;
+  border-radius: 1rem;
   background:
     radial-gradient(circle at 90% 10%, rgb(239 61 35 / 26%), transparent 38%),
     rgb(14 16 18 / 88%);
@@ -1394,7 +1394,7 @@
 
   .service-detail-hero__visual {
     min-height: 42rem;
-    border-radius: 14rem 14rem 1.2rem 1.2rem;
+    border-radius: 1.2rem;
   }
 
   .service-fit__heading {
@@ -1574,7 +1574,7 @@
     margin-left: calc(var(--page-gutter) * -1);
     border-right: 0;
     border-left: 0;
-    border-radius: 9rem 9rem 0 0;
+    border-radius: 0;
   }
 
   .service-heading-row,
@@ -1601,7 +1601,7 @@
 
   .service-engagement__grid article {
     min-height: auto;
-    border-radius: 7rem 7rem 1rem 1rem;
+    border-radius: 1rem;
   }
 
   .service-engagement__grid small {
@@ -1648,7 +1648,7 @@
   }
 
   .service-related__case {
-    border-radius: 1rem 6rem 1rem 1rem;
+    border-radius: 1rem;
   }
 }
 
