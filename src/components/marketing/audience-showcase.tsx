@@ -50,7 +50,7 @@ export function AudienceShowcase({ items }: { items: readonly AudienceItem[] }) 
           <Link
             key={item.title}
             href={item.href}
-            className={`audience-selector__item${index === activeIndex ? " is-active" : ""}`}
+            className={`audience-selector__item clickable-image-card${index === activeIndex ? " is-active" : ""}`}
             onMouseEnter={() => setActiveIndex(index)}
             onFocus={() => setActiveIndex(index)}
           >

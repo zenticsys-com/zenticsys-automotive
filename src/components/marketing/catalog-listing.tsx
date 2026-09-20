@@ -40,7 +40,10 @@ export function CatalogListing({
         <Container>
           {entries.map((entry, index) => (
             <article className="catalog-card" key={entry.slug}>
-              <Link href={`/${collection}/${entry.slug}`}>
+              <Link
+                href={`/${collection}/${entry.slug}`}
+                className="clickable-image-card"
+              >
                 <Image
                   src={entry.image}
                   alt={entry.imageAlt}
@@ -68,4 +71,3 @@ export function CatalogListing({
     </main>
   );
 }
-

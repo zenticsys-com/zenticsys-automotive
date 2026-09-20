@@ -85,7 +85,7 @@
 
 .catalog-card img {
   object-fit: cover;
-  filter: saturate(0.7) contrast(1.06) brightness(0.7);
+  filter: saturate(0.7) contrast(1.06) brightness(0.7) grayscale(var(--clickable-image-grayscale));
   transform: scale(1.01);
   transition:
     filter 500ms ease,
@@ -94,7 +94,7 @@
 
 .catalog-card:hover img,
 .catalog-card:focus-within img {
-  filter: saturate(0.88) contrast(1.04) brightness(0.78);
+  filter: saturate(0.88) contrast(1.04) brightness(0.78) grayscale(var(--clickable-image-grayscale));
   transform: scale(1.045);
 }
 

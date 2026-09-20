@@ -865,8 +865,10 @@
 
 .solution-card img {
   object-fit: cover;
-  filter: saturate(0.65) brightness(0.56) contrast(1.14);
-  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  filter: saturate(0.65) brightness(0.56) contrast(1.14) grayscale(var(--clickable-image-grayscale));
+  transition:
+    filter 500ms ease,
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .solution-card__overlay {
@@ -1345,17 +1347,25 @@
 }
 
 .insight-card__visual img {
+  --clickable-image-grayscale: 0.2;
+
   object-fit: cover;
-  filter: grayscale(0.2) brightness(0.48) contrast(1.15) hue-rotate(125deg);
-  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  filter: grayscale(var(--clickable-image-grayscale)) brightness(0.48) contrast(1.15) hue-rotate(125deg);
+  transition:
+    filter 500ms ease,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .insight-card__visual--2 img {
-  filter: brightness(0.5) contrast(1.15) hue-rotate(165deg);
+  --clickable-image-grayscale: 0;
+
+  filter: grayscale(var(--clickable-image-grayscale)) brightness(0.5) contrast(1.15) hue-rotate(165deg);
 }
 
 .insight-card__visual--3 img {
-  filter: brightness(0.45) contrast(1.12) hue-rotate(120deg);
+  --clickable-image-grayscale: 0;
+
+  filter: grayscale(var(--clickable-image-grayscale)) brightness(0.45) contrast(1.12) hue-rotate(120deg);
 }
 
 .insight-card__pattern {
@@ -1712,7 +1722,8 @@
 
   .audience-mobile-media img {
     object-fit: cover;
-    filter: saturate(0.72) contrast(1.08) brightness(0.66);
+    filter: saturate(0.72) contrast(1.08) brightness(0.66) grayscale(var(--clickable-image-grayscale));
+    transition: filter 500ms ease;
   }
 
   .audience-mobile-media > span {
@@ -1874,6 +1885,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .clickable-image-card img,
   .audience-stage img,
   .audience-selector__item,
   .audience-selector__item::before,

@@ -54,7 +54,7 @@ export function SolutionGallery() {
             <Link
               href={solution.href}
               key={solution.title}
-              className={`solution-card ${solution.className}`.trim()}
+              className={`solution-card clickable-image-card ${solution.className}`.trim()}
             >
               <Image
                 src={solution.image}
@@ -208,7 +208,7 @@ export function InsightsPreview() {
 
         <div className="insights-grid">
           {insights.map((insight, index) => (
-            <Link href={insight.href} className="insight-card" key={insight.title}>
+            <Link href={insight.href} className="insight-card clickable-image-card" key={insight.title}>
               <span className={`insight-card__visual insight-card__visual--${index + 1}`}>
                 <Image src={insight.image} alt="" fill sizes="(max-width: 767px) 100vw, 33vw" />
                 <span className="insight-card__pattern" />

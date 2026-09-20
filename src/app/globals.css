@@ -70,6 +70,18 @@ a {
   color: inherit;
 }
 
+/* Shared interaction for linked cards whose primary visual is an image. */
+.clickable-image-card {
+  --clickable-image-grayscale: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .clickable-image-card:hover img,
+  .clickable-image-card:focus-visible img {
+    --clickable-image-grayscale: 1;
+  }
+}
+
 button,
 input,
 select,
