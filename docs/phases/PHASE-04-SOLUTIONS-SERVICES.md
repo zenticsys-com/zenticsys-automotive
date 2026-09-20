@@ -103,9 +103,12 @@ Every detail route includes:
 
 ### Assets and presentation
 
-- Phase 04 reuses the approved, locally stored automotive assets recorded by
-  the earlier asset work; it does not introduce AI-generated imagery or new
-  external image dependencies.
+- Solution pages reuse the approved, locally stored automotive assets recorded
+  by the earlier asset work. Service pages use a separate set of five licensed
+  stock photographs showing web development, software engineering, UI/UX
+  design, automotive mobile use, and connected diagnostics. Sources and license
+  details are recorded in `docs/assets/SERVICE-ASSET-REGISTRY.md`.
+- Phase 04 does not use AI-generated imagery.
 - The fixed, changing atmosphere continues behind every route.
 - Presentation and responsive behavior are contained in
   `src/styles/catalog.css`; no new animation runtime or component library was

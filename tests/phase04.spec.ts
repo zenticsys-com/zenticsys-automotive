@@ -78,6 +78,29 @@ test("keeps the listing experience image-led, minimal, and correctly linked", as
   }
 });
 
+test("uses distinct service-specific stock imagery", async ({ page }) => {
+  await page.goto("/services");
+
+  const expectedImages = [
+    "service-website-development.jpg",
+    "service-custom-software.jpg",
+    "service-ui-ux.jpg",
+    "service-mobile-app-phone.jpg",
+    "service-integrations.jpg",
+  ];
+  const imageSources = await page.locator(".catalog-card img").evaluateAll((images) =>
+    images.map((image) => decodeURIComponent(image.getAttribute("src") ?? "")),
+  );
+
+  expect(imageSources).toHaveLength(expectedImages.length);
+  expect(new Set(imageSources).size).toBe(expectedImages.length);
+
+  for (const fileName of expectedImages) {
+    expect(imageSources.some((source) => source.includes(fileName))).toBeTruthy();
+  }
+  expect(imageSources.some((source) => source.includes("solution-"))).toBeFalsy();
+});
+
 test("renders informative detail pages with unique metadata and structured content", async ({
   page,
 }) => {
