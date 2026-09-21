@@ -15,6 +15,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "playwright test",
+    "test:a11y": "playwright test tests/phase08.spec.ts",
     "payload": "payload",
     "cms:generate-types": "payload generate:types",
     "cms:generate-importmap": "payload generate:importmap",
@@ -38,6 +39,7 @@
     "sharp": "0.35.4"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

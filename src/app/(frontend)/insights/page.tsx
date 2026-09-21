@@ -13,6 +13,11 @@ export const metadata: Metadata = {
     description: "Product, workflow, and technology thinking for modern automotive businesses.",
     url: "/insights",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Automotive Technology Insights | Zenticsys",
+    description: "Product, workflow, and technology thinking for modern automotive businesses.",
+  },
 };
 
 export default async function InsightsPage() {

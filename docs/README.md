@@ -6,6 +6,9 @@ Read [`PROJECT-BRAIN.md`](./PROJECT-BRAIN.md) before making design, content, arc
 
 Read [`ENVIRONMENT-SETUP.md`](./ENVIRONMENT-SETUP.md) before configuring MongoDB Atlas, Cloudflare R2, Vercel, Calendly, Google Calendar, Google Meet, or email delivery.
 
+Use [`LAUNCH-CHECKLIST.md`](./LAUNCH-CHECKLIST.md) for the post-implementation
+Preview, production configuration, QA, monitoring, launch, and rollback gates.
+
 ## Phase order
 
 1. [Phase 00 — Content and design foundation](./phases/PHASE-00-CONTENT-DESIGN-FOUNDATION.md)

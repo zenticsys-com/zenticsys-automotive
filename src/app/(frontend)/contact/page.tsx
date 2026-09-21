@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     description: "Start a low-commitment conversation about your automotive digital project.",
     url: "/contact",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Zenticsys",
+    description: "Start a low-commitment conversation about your automotive digital project.",
+  },
 };
 
 function safeWhatsAppUrl() {

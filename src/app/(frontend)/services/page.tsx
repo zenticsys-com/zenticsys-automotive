@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     description: "The design and engineering capabilities behind dependable automotive digital products.",
     url: "/services",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Automotive Design & Development Services | Zenticsys",
+    description: "The design and engineering capabilities behind dependable automotive digital products.",
+  },
 };
 
 export default async function ServicesPage() {

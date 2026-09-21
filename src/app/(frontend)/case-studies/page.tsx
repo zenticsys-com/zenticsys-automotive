@@ -13,6 +13,11 @@ export const metadata: Metadata = {
     description: "Selected automotive product and platform experience from Zenticsys.",
     url: "/case-studies",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Automotive Case Studies | Zenticsys",
+    description: "Selected automotive product and platform experience from Zenticsys.",
+  },
 };
 
 export default async function CaseStudiesPage() {

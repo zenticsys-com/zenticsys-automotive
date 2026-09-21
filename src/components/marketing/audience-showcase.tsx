@@ -31,6 +31,8 @@ export function AudienceShowcase({ items }: { items: readonly AudienceItem[] }) 
             alt=""
             fill
             sizes="(max-width: 767px) 0px, (max-width: 1199px) 58vw, 760px"
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "auto"}
             className={index === activeIndex ? "is-active" : ""}
             style={{ objectPosition: item.position }}
           />
@@ -64,6 +66,8 @@ export function AudienceShowcase({ items }: { items: readonly AudienceItem[] }) 
                 alt=""
                 fill
                 sizes="82vw"
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"}
                 style={{ objectPosition: item.position }}
               />
               <span />

@@ -6,6 +6,16 @@ export const metadata: Metadata = {
   title: "Privacy Notice",
   description: "How Zenticsys handles information submitted through this website.",
   alternates: { canonical: "/privacy" },
+  openGraph: {
+    title: "Privacy Notice | Zenticsys",
+    description: "How Zenticsys handles information submitted through this website.",
+    url: "/privacy",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Notice | Zenticsys",
+    description: "How Zenticsys handles information submitted through this website.",
+  },
 };
 
 export default function PrivacyPage() {

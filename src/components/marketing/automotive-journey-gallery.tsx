@@ -32,6 +32,9 @@ const journeyStations = [
 ] as const;
 
 export function AutomotiveJourneyGallery() {
+  const isEnabled = false;
+  if (!isEnabled) return null;
+
   return (
     <figure className="journey-gallery" hidden>
       <figcaption className="journey-gallery__heading">

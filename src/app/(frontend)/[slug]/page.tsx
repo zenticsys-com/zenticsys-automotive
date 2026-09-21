@@ -10,11 +10,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const page = await getPageBySlug(slug);
   if (!page) notFound();
+  const title = page.seo?.metaTitle || page.title;
+  const description = page.seo?.metaDescription || undefined;
+  const canonical = `/${page.slug}`;
   return {
-    title: page.seo?.metaTitle || page.title,
-    description: page.seo?.metaDescription,
+    title,
+    description,
     robots: page.seo?.noIndex ? { index: false, follow: false } : undefined,
-    alternates: { canonical: `/${page.slug}` },
+    alternates: { canonical },
+    openGraph: { title, description, url: canonical },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 

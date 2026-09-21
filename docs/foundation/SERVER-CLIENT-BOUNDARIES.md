@@ -137,3 +137,23 @@ needs it and pass serializable props from its Server Component parent.
 Important headings, links, and marketing copy must be present in initial HTML.
 Animations may enhance that HTML but must never be responsible for fetching or
 revealing indexable content.
+
+## Phase 07 boundary audit
+
+- Payload queries, MongoDB access, R2 credentials, collection access control,
+  and static-content fallbacks remain server-only.
+- Public pages receive serializable CMS content from server query helpers; no
+  browser-side CMS fetch is required to render indexable copy.
+- Payload Admin is the intentionally client-capable operational application and
+  is isolated under `/admin`; it is not part of the public marketing tree.
+
+## Phase 08 boundary audit
+
+- Metadata, sitemap, robots, manifest, generated social imagery, and JSON-LD are
+  produced by Next.js server/file-convention routes.
+- The public route audit confirms headings, metadata, canonical links, and core
+  copy exist in the initial response rather than appearing after hydration.
+- Automated accessibility checks emulate reduced motion; content visibility is
+  independent from Motion enhancement.
+- The disabled lifecycle gallery returns `null`, so hidden presentation does not
+  create DOM, preload hints, image requests, or accessibility noise.

@@ -34,10 +34,12 @@ These decisions should be resolved before Phase 00 is marked complete.
 
 ## Infrastructure decisions deferred to later phases
 
-- [ ] Select the transactional email provider in Phase 06.
-- [ ] Create Calendly event and connect Google Calendar/Google Meet in Phase 06.
+- [x] Select Resend as the transactional email provider in Phase 06.
+- [ ] Create the documented Calendly event and connect Google Calendar/Google
+  Meet before production launch. The application integration is complete.
 - [ ] Create the external MongoDB Atlas and R2 resources, add the documented environment values, and complete Phase 07 live integration verification. The application-side Payload/R2 implementation is complete.
-- [ ] Configure Vercel Preview/Production variables in Phase 08.
+- [ ] Configure Vercel Preview/Production variables and complete the live gates
+  in `docs/LAUNCH-CHECKLIST.md`. The application-side Phase 08 work is complete.
 
 ## Phase 00 status
 

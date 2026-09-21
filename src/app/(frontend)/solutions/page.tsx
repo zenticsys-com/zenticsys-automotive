@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     description: "Digital systems for businesses that sell, service, manage, and move vehicles.",
     url: "/solutions",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Automotive Digital Solutions | Zenticsys",
+    description: "Digital systems for businesses that sell, service, manage, and move vehicles.",
+  },
 };
 
 export default async function SolutionsPage() {

@@ -6,7 +6,7 @@ import { isCmsFullyConfigured } from "@/lib/cms/configuration";
 
 import { importMap } from "../importMap.js";
 
-export const metadata = { title: "Zenticsys CMS" };
+export const metadata = { title: "Zenticsys CMS", robots: { index: false, follow: false } };
 
 type AdminPageProps = {
   params: Promise<{ segments: string[] }>;

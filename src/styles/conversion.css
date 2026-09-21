@@ -440,9 +440,9 @@
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  border: 1px solid var(--brand);
+  border: 1px solid var(--brand-dark);
   border-radius: 0;
-  background: var(--brand);
+  background: var(--brand-dark);
   color: var(--color-white);
   font-weight: 650;
   cursor: pointer;
@@ -450,7 +450,7 @@
 }
 
 .form-button:hover:not(:disabled) {
-  background: var(--brand-dark);
+  background: #b92310;
   transform: translateY(-2px);
 }
 
@@ -839,6 +839,13 @@
 .legal-page article p {
   color: #b2b9bc;
   line-height: 1.75;
+}
+
+.legal-page article a {
+  color: var(--color-white);
+  text-decoration: underline;
+  text-decoration-color: var(--brand-light);
+  text-underline-offset: 0.22em;
 }
 
 @keyframes form-panel-arrive {

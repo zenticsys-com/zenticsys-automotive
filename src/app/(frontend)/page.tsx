@@ -29,6 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
     robots: homepage.seo?.noIndex ? { index: false, follow: false } : undefined,
     alternates: { canonical: "/" },
     openGraph: { title, description, url: "/", images: socialImage ? [socialImage] : undefined },
+    twitter: { card: "summary_large_image", title, description, images: socialImage ? [socialImage] : undefined },
   };
 }
 

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     description: "A guided project brief for automotive websites, platforms, and custom software.",
     url: "/request-a-proposal",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Request an Automotive Project Proposal | Zenticsys",
+    description: "A guided project brief for automotive websites, platforms, and custom software.",
+  },
 };
 
 export default function RequestProposalPage() {

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     description: "Choose a convenient time for a focused 30-minute automotive project consultation.",
     url: "/schedule-a-call",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Schedule an Automotive Project Call | Zenticsys",
+    description: "Choose a convenient time for a focused 30-minute automotive project consultation.",
+  },
 };
 
 export default function ScheduleCallPage() {

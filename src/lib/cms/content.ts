@@ -214,3 +214,21 @@ export const getPageBySlug = cache(async (slug: string): Promise<Page | undefine
     return undefined;
   }
 });
+
+export const getManagedPages = cache(async (): Promise<Page[]> => {
+  if (!isCmsFullyConfigured()) return [];
+  try {
+    const payload = await getPayload({ config });
+    const result = await payload.find({
+      collection: "pages",
+      draft: false,
+      limit: 100,
+      overrideAccess: false,
+      sort: "slug",
+    });
+    return result.docs;
+  } catch (error) {
+    console.error("CMS sitemap page read failed.", error);
+    return [];
+  }
+});

@@ -87,11 +87,7 @@ test("keeps editorial imagery decorative and meaningful visuals labelled", async
     await expect(images.nth(index)).toHaveAttribute("alt", "");
   }
 
-  await expect(
-    page.getByText("One industry, connected at every turn."),
-  ).toBeAttached();
-  await expect(page.locator(".journey-gallery")).toBeHidden();
-  await expect(page.locator(".journey-road")).toHaveAttribute("aria-hidden", "true");
+  await expect(page.locator(".journey-gallery")).toHaveCount(0);
 
   await expect(
     page.getByLabel("Representative CarVu workflow interface illustration"),
@@ -154,57 +150,11 @@ test("separates operation imagery and presentation from solution cards", async (
     .evaluateAll((images) =>
       images.map((image) => decodeURIComponent(image.getAttribute("src") ?? "")),
     );
-  const journeySources = await page
-    .locator(".journey-station img")
-    .evaluateAll((images) =>
-      images.map((image) => decodeURIComponent(image.getAttribute("src") ?? "")),
-    );
 
   expect(operationSources).toHaveLength(6);
   expect(new Set(operationSources).size).toBe(6);
   expect(operationSources.every((source) => source.includes("operation-"))).toBeTruthy();
   expect(operationSources.some((source) => solutionSources.includes(source))).toBeFalsy();
-  expect(journeySources).toHaveLength(4);
-  expect(new Set(journeySources).size).toBe(4);
-  expect(journeySources.every((source) => source.includes("journey-"))).toBeTruthy();
-  expect(journeySources.some((source) => operationSources.includes(source))).toBeFalsy();
-  expect(journeySources.some((source) => solutionSources.includes(source))).toBeFalsy();
-
-  const journeyGeometry = await page
-    .locator(".journey-station")
-    .evaluateAll((stations) =>
-      stations.map((station) => {
-        const bounds = station.getBoundingClientRect();
-        const surface = station.querySelector<HTMLElement>(".journey-station__surface");
-        const styles = window.getComputedStyle(surface!);
-
-        return {
-          left: Math.round(bounds.left),
-          right: Math.round(bounds.right),
-          width: Math.round(bounds.width),
-          height: Math.round(bounds.height),
-          radii: [
-            parseFloat(styles.borderTopLeftRadius),
-            parseFloat(styles.borderTopRightRadius),
-            parseFloat(styles.borderBottomRightRadius),
-            parseFloat(styles.borderBottomLeftRadius),
-          ],
-        };
-      }),
-    );
-
-  expect(new Set(journeyGeometry.map(({ width }) => width)).size).toBe(1);
-  expect(new Set(journeyGeometry.map(({ height }) => height)).size).toBe(1);
-  const journeyGaps = journeyGeometry.slice(0, -1).map(
-    ({ right }, index) => journeyGeometry[index + 1].left - right,
-  );
-  expect(Math.max(...journeyGaps) - Math.min(...journeyGaps)).toBeLessThanOrEqual(1);
-  expect(journeyGeometry[0].radii[3]).toBeGreaterThan(journeyGeometry[0].radii[0]);
-  expect(journeyGeometry[1].radii[0]).toBeGreaterThan(journeyGeometry[1].radii[1]);
-  expect(journeyGeometry[1].radii[2]).toBeGreaterThan(journeyGeometry[1].radii[3]);
-  expect(journeyGeometry[2].radii[1]).toBeGreaterThan(journeyGeometry[2].radii[0]);
-  expect(journeyGeometry[2].radii[3]).toBeGreaterThan(journeyGeometry[2].radii[2]);
-  expect(journeyGeometry[3].radii[1]).toBeGreaterThan(journeyGeometry[3].radii[0]);
 
   await page.waitForLoadState("networkidle");
   const fleetSelector = page.locator(".audience-selector__item").nth(1);
