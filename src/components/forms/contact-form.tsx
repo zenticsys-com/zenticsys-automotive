@@ -1,6 +1,7 @@
 "use client";
 
 import { Check, Send } from "lucide-react";
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 import { resetTurnstile, TurnstileWidget } from "@/components/forms/turnstile-widget";
@@ -53,7 +54,7 @@ export function ContactForm({ turnstileSiteKey }: { turnstileSiteKey?: string })
         <label className="form-field form-field--wide"><span>How can we help? <em>Required</em></span><textarea name="message" required minLength={20} rows={6} /></label>
         <label className="form-field"><span>Preferred reply</span><select name="preferredContact" defaultValue="Email"><option>Email</option><option>Phone</option><option>WhatsApp</option></select></label>
       </div>
-      <label className="consent-field"><input type="checkbox" name="consent" required /><span>I agree that Zenticsys may use these details to respond to my message. See the <a href="/privacy">privacy notice</a>.</span></label>
+      <label className="consent-field"><input type="checkbox" name="consent" required /><span>I agree that Zenticsys may use these details to respond to my message. See the <Link href="/privacy">privacy notice</Link>.</span></label>
       <TurnstileWidget siteKey={turnstileSiteKey} action="contact" />
       {state.status === "error" ? <p className="form-alert" role="alert">{state.message}</p> : null}
       <button type="submit" className="form-button" disabled={state.status === "submitting"}>{state.status === "submitting" ? "Sending…" : "Send message"} <Send size={17} aria-hidden="true" /></button>

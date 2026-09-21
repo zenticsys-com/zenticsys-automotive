@@ -10,7 +10,6 @@ import { useEffect, useRef, useState } from "react";
 
 import { SiteLogo } from "@/components/layout/site-logo";
 import { ScheduleCallLink } from "@/components/ui/schedule-call-link";
-import { primaryNavigation, projectNavigation } from "@/lib/navigation";
 
 const menuId = "site-menu-panel";
 const premiumEase = [0.22, 1, 0.36, 1] as const;
@@ -66,9 +65,13 @@ function MenuGlyph({ open }: MenuGlyphProps) {
 
 type MenuPanelProps = {
   onClose: () => void;
+  primaryLinks: ReadonlyArray<{ label: string; href: string }>;
+  projectLinks: ReadonlyArray<{ label: string; href: string }>;
+  scheduleLabel: string;
+  email: string;
 };
 
-function MenuPanel({ onClose }: MenuPanelProps) {
+function MenuPanel({ onClose, primaryLinks, projectLinks, scheduleLabel, email }: MenuPanelProps) {
   return (
     <div className="menu-panel__inner">
       <motion.div className="menu-panel__topbar" variants={linkVariants}>
@@ -90,7 +93,7 @@ function MenuPanel({ onClose }: MenuPanelProps) {
           </motion.p>
           <nav aria-label="Primary navigation">
             <motion.ul className="menu-links" role="list">
-              {primaryNavigation.map((item) => (
+              {primaryLinks.map((item) => (
                 <motion.li key={item.href} variants={linkVariants}>
                   <Link href={item.href} onClick={onClose}>
                     <span>{item.label}</span>
@@ -107,9 +110,9 @@ function MenuPanel({ onClose }: MenuPanelProps) {
           <p className="menu-panel__prompt">
             Have an automotive product, platform, or website in motion?
           </p>
-          <ScheduleCallLink onNavigate={onClose} />
+          <ScheduleCallLink onNavigate={onClose} label={scheduleLabel} />
           <div className="menu-panel__secondary-links">
-            {projectNavigation
+            {projectLinks
               .filter((item) => item.href !== "/schedule-a-call")
               .map((item) => (
                 <Link key={item.href} href={item.href} onClick={onClose}>
@@ -121,14 +124,14 @@ function MenuPanel({ onClose }: MenuPanelProps) {
       </div>
 
       <motion.div className="menu-panel__footer" variants={linkVariants}>
-        <a href="mailto:info@zenticsys.com">info@zenticsys.com</a>
+        <a href={`mailto:${email}`}>{email}</a>
         <span>Automotive digital products</span>
       </motion.div>
     </div>
   );
 }
 
-export function MenuOverlay() {
+export function MenuOverlay({ primaryLinks, projectLinks, scheduleLabel, email }: Omit<MenuPanelProps, "onClose">) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const reduceMotion = useReducedMotion();
@@ -220,7 +223,7 @@ export function MenuOverlay() {
                     <h2 id="site-menu-title" className="visually-hidden">
                       Site navigation
                     </h2>
-                    <MenuPanel onClose={closeMenu} />
+                    <MenuPanel onClose={closeMenu} primaryLinks={primaryLinks} projectLinks={projectLinks} scheduleLabel={scheduleLabel} email={email} />
                   </motion.section>
                 </DismissableLayer>
               </FocusScope>

@@ -190,6 +190,16 @@ https://<ACCOUNT_ID>.r2.cloudflarestorage.com
 
 R2 Standard's current free allowance is 10 GB-month storage, 1 million Class A operations, 10 million Class B operations, and free egress. Class A includes writes/management such as uploads, copies, lists, and multipart operations. Class B includes reads/checks. Free usage is not unlimited; monitor usage and billing alerts.
 
+### Phase 07 application behavior
+
+- Payload's S3-compatible adapter uses `R2_ENDPOINT`, region `auto`, and path-style requests.
+- `R2_PUBLIC_URL` is the public media origin and must not end with `/`.
+- Local media storage is disabled by the adapter. The app requires all R2 values before enabling `/admin` or `/cms-api`; this avoids silently writing production uploads to Vercel's temporary filesystem.
+- The initial implementation uploads through the authenticated Payload server endpoint. If direct browser uploads are enabled later for larger files, add a tightly scoped bucket CORS policy for the exact admin origins and required `PUT`/header rules at that time.
+- After setting variables, restart local development or redeploy Vercel, open `/admin`, create the first administrator, then run `npm run cms:seed`.
+- Payload routes are `/admin` and `/cms-api`. The enquiry endpoint remains `/api/enquiries`.
+- Use Node 22 (`nvm use` reads the committed `.nvmrc`). Node 25 is intentionally excluded because the current Payload CLI loader is not compatible with it.
+
 ## 6. Vercel setup
 
 ### Portal

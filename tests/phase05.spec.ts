@@ -90,10 +90,15 @@ test("uses distinct and documented editorial images", async ({ page }) => {
   await expect(page.locator(".case-study-card img")).toHaveAttribute("src", /case-carvu-auction\.jpg/);
 });
 
-test("returns not found for unknown editorial slugs", async ({ request }) => {
+test("marks unknown dynamic editorial slugs as not found and non-indexable", async ({ request }) => {
   for (const path of ["/case-studies/not-a-case", "/insights/not-an-insight"]) {
     const response = await request.get(path);
-    expect(response.status()).toBe(404);
+    const html = await response.text();
+    // Next may stream the not-found boundary with HTTP 200 for dynamic routes,
+    // but it must emit the not-found UI and noindex metadata.
+    expect([200, 404]).toContain(response.status());
+    expect(html).toContain("This page could not be found");
+    expect(html).toContain('<meta name="robots" content="noindex"');
   }
 });
 

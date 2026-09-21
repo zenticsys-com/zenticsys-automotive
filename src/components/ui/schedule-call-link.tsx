@@ -4,12 +4,14 @@ import Link from "next/link";
 type ScheduleCallLinkProps = {
   className?: string;
   compact?: boolean;
+  label?: string;
   onNavigate?: () => void;
 };
 
 export function ScheduleCallLink({
   className = "",
   compact = false,
+  label = "Schedule a Call",
   onNavigate,
 }: ScheduleCallLinkProps) {
   return (
@@ -19,7 +21,7 @@ export function ScheduleCallLink({
       onClick={onNavigate}
     >
       <span className="running-border-cta__label">
-        <span className="running-border-cta__full-label">Schedule a Call</span>
+        <span className="running-border-cta__full-label">{label}</span>
         <span className="running-border-cta__short-label">Schedule</span>
       </span>
       {!compact && <ArrowUpRight aria-hidden="true" size={16} strokeWidth={2} />}

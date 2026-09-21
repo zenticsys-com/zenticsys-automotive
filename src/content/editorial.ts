@@ -13,6 +13,7 @@ export type CaseStudyEntry = {
   readonly capabilities: readonly { readonly title: string; readonly description: string }[];
   readonly technicalNotes: readonly { readonly title: string; readonly description: string }[];
   readonly proof: readonly { readonly title: string; readonly description: string }[];
+  readonly seo?: { readonly metaTitle?: string | null; readonly metaDescription?: string | null; readonly socialImage?: string | null; readonly noIndex?: boolean | null };
 };
 
 export type InsightSection = {
@@ -39,6 +40,7 @@ export type InsightEntry = {
   readonly sections: readonly InsightSection[];
   readonly takeaways: readonly string[];
   readonly relatedSlugs: readonly string[];
+  readonly seo?: { readonly metaTitle?: string | null; readonly metaDescription?: string | null; readonly socialImage?: string | null; readonly noIndex?: boolean | null };
 };
 
 export const caseStudies: readonly CaseStudyEntry[] = [

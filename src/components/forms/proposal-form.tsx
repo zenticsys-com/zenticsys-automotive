@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowLeft, ArrowRight, Check, FileUp, Send } from "lucide-react";
+import Link from "next/link";
 import { FormEvent, useMemo, useRef, useState } from "react";
 
 import {
@@ -227,7 +228,7 @@ export function ProposalForm({ turnstileSiteKey }: { turnstileSiteKey?: string }
         </div>
         <label className="consent-field">
           <input type="checkbox" name="consent" required />
-          <span>I agree that Zenticsys may use these details to review and respond to this enquiry. See the <a href="/privacy">privacy notice</a>.</span>
+          <span>I agree that Zenticsys may use these details to review and respond to this enquiry. See the <Link href="/privacy">privacy notice</Link>.</span>
         </label>
         <TurnstileWidget siteKey={turnstileSiteKey} action="proposal" />
         {submission.status === "error" ? <p className="form-alert" role="alert">{submission.message}</p> : null}

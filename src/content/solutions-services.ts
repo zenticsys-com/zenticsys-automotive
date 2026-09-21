@@ -15,6 +15,13 @@ export type CatalogFaq = {
   answer: string;
 };
 
+export type SeoContent = {
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  socialImage?: string | null;
+  noIndex?: boolean | null;
+};
+
 export type CatalogEntry = {
   kind: CatalogKind;
   slug: string;
@@ -43,6 +50,7 @@ export type CatalogEntry = {
   process: readonly CatalogStep[];
   relatedSlugs: readonly string[];
   faqs: readonly CatalogFaq[];
+  seo?: SeoContent;
 };
 
 const solutionProcess = [

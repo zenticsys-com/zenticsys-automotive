@@ -2,17 +2,29 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { Container } from "@/components/ui/container";
-import { legalNavigation, primaryNavigation, projectNavigation } from "@/lib/navigation";
+import { legalNavigation } from "@/lib/navigation";
 
-export function SiteFooter() {
+type SiteFooterProps = {
+  kicker: string;
+  title: string;
+  description: string;
+  ctaLabel: string;
+  ctaHref: string;
+  copyright: string;
+  linkGroups: ReadonlyArray<{ title: string; links: ReadonlyArray<{ label: string; href: string }> }>;
+  email: string;
+  socialLinks: ReadonlyArray<{ label: string; href: string }>;
+};
+
+export function SiteFooter({ kicker, title, description, ctaLabel, ctaHref, copyright, linkGroups, email, socialLinks }: SiteFooterProps) {
   return (
     <footer className="site-footer">
       <Container>
         <div className="site-footer__lead">
-          <p className="section-kicker">Start something in motion</p>
-          <h2>Have an automotive project to build?</h2>
-          <Link href="/request-a-proposal" className="footer-proposal-link">
-            Request a Proposal
+          <p className="section-kicker">{kicker}</p>
+          <h2>{title}</h2>
+          <Link href={ctaHref} className="footer-proposal-link">
+            {ctaLabel}
             <ArrowUpRight aria-hidden="true" size={22} />
           </Link>
         </div>
@@ -22,30 +34,20 @@ export function SiteFooter() {
             <span className="site-footer__mark" aria-hidden="true">
               Z
             </span>
-            <p>
-              Digital systems for businesses that sell, service, manage, and
-              move vehicles.
-            </p>
+            <p>{description}</p>
           </div>
 
-          <FooterGroup title="Explore" links={primaryNavigation.slice(1)} />
-          <FooterGroup title="Start a project" links={projectNavigation} />
+          {linkGroups.map((group) => <FooterGroup key={group.title} title={group.title} links={group.links} />)}
 
           <div className="footer-group">
             <p className="footer-group__title">Contact</p>
-            <a href="mailto:info@zenticsys.com">info@zenticsys.com</a>
-            <a
-              href="https://www.linkedin.com/company/zenticsys/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
-            </a>
+            <a href={`mailto:${email}`}>{email}</a>
+            {socialLinks.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label}</a>)}
           </div>
         </div>
 
         <div className="site-footer__legal">
-          <span>© {new Date().getFullYear()} Zenticsys</span>
+          <span>© {new Date().getFullYear()} {copyright}</span>
           <div>
             {legalNavigation.map((item) => (
               <Link key={item.href} href={item.href}>

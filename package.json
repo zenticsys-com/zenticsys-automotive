@@ -2,21 +2,40 @@
   "name": "zenticsys-automotive",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.9 <25"
+  },
+  "overrides": {
+    "dompurify": "3.4.15"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "payload": "payload",
+    "cms:generate-types": "payload generate:types",
+    "cms:generate-importmap": "payload generate:importmap",
+    "cms:seed": "payload run scripts/seed-cms.ts"
   },
   "dependencies": {
+    "@payloadcms/db-mongodb": "3.90.1",
+    "@payloadcms/next": "3.90.1",
+    "@payloadcms/richtext-lexical": "3.90.1",
+    "@payloadcms/storage-s3": "3.90.1",
     "@radix-ui/react-dismissable-layer": "^1.1.19",
     "@radix-ui/react-focus-scope": "^1.1.16",
+    "graphql": "16.14.2",
     "lucide-react": "^1.46.0",
     "motion": "^13.4.0",
     "next": "16.3.5",
+    "payload": "3.90.1",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "server-only": "^0.0.1",
+    "sharp": "0.35.4"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

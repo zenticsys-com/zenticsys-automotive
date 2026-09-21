@@ -13,15 +13,18 @@ import Link from "next/link";
 import { AudienceShowcase } from "@/components/marketing/audience-showcase";
 import { Container } from "@/components/ui/container";
 import { audiences, capabilities, insights, solutions } from "@/content/home";
+import type { Homepage } from "@/payload-types";
 
-export function AudienceGallery() {
+type SectionCopy = Homepage["sections"];
+
+export function AudienceGallery({ copy }: { copy: SectionCopy }) {
   return (
     <section className="home-section audience-section" aria-labelledby="audience-title" data-atmosphere="amber">
       <Container>
         <div className="section-heading section-heading--split">
           <div>
-            <p className="section-kicker">One industry. Different operations.</p>
-            <h2 id="audience-title">Built around how automotive businesses actually work.</h2>
+            <p className="section-kicker">{copy.audienceKicker}</p>
+            <h2 id="audience-title">{copy.audienceTitle}</h2>
           </div>
           <p>
             From a single-location dealership website to the operational system
@@ -36,13 +39,13 @@ export function AudienceGallery() {
   );
 }
 
-export function SolutionGallery() {
+export function SolutionGallery({ copy }: { copy: SectionCopy }) {
   return (
     <section className="home-section solution-section" aria-labelledby="solutions-title" data-atmosphere="petrol">
       <Container>
         <div className="section-heading section-heading--centered">
-          <p className="section-kicker">What we build</p>
-          <h2 id="solutions-title">Digital products across the automotive journey.</h2>
+          <p className="section-kicker">{copy.solutionsKicker}</p>
+          <h2 id="solutions-title">{copy.solutionsTitle}</h2>
           <p>
             Customer-facing websites, operational platforms, and the software
             connecting everything behind them.
@@ -77,7 +80,7 @@ export function SolutionGallery() {
   );
 }
 
-export function WorkflowStory() {
+export function WorkflowStory({ copy }: { copy: SectionCopy }) {
   const steps = [
     { number: "01", title: "Customer experience", text: "A buyer, driver, fleet manager, or vehicle owner starts on the website or app." },
     { number: "02", title: "Automotive workflow", text: "Inventory, bookings, offers, bids, service work, and vehicle activity move through the system." },
@@ -90,8 +93,8 @@ export function WorkflowStory() {
       <Container>
         <div className="section-heading section-heading--split">
           <div>
-            <p className="section-kicker">One connected journey</p>
-            <h2 id="workflow-title">We design what customers see—and what your team needs behind it.</h2>
+            <p className="section-kicker">{copy.workflowKicker}</p>
+            <h2 id="workflow-title">{copy.workflowTitle}</h2>
           </div>
           <p>
             Good automotive software connects the public experience to the
@@ -115,19 +118,15 @@ export function WorkflowStory() {
   );
 }
 
-export function CarVuFeature() {
+export function CarVuFeature({ copy }: { copy: SectionCopy }) {
   return (
     <section className="home-section carvu-section" aria-labelledby="carvu-title" data-atmosphere="ember">
       <Container>
         <div className="carvu-card">
           <div className="carvu-card__copy">
-            <p className="section-kicker">Enterprise automotive experience</p>
-            <h2 id="carvu-title">Complex automotive workflows, understood through CarVu.</h2>
-            <p>
-              Our experience includes an enterprise automotive SaaS product
-              spanning online buying and selling, public and dealer auctions,
-              role-based dealer operations, and super-admin platform control.
-            </p>
+            <p className="section-kicker">{copy.carVuKicker}</p>
+            <h2 id="carvu-title">{copy.carVuTitle}</h2>
+            <p>{copy.carVuDescription}</p>
             <ul>
               <li>Vehicle marketplace workflows</li>
               <li>Public and dealer auction journeys</li>
@@ -162,14 +161,14 @@ export function CarVuFeature() {
   );
 }
 
-export function CapabilitySection() {
+export function CapabilitySection({ copy }: { copy: SectionCopy }) {
   return (
     <section className="home-section capability-section" aria-labelledby="capability-title" data-atmosphere="steel">
       <Container>
         <div className="section-heading section-heading--split">
           <div>
-            <p className="section-kicker">Engineering depth</p>
-            <h2 id="capability-title">From the first enquiry to platform-wide control.</h2>
+            <p className="section-kicker">{copy.capabilitiesKicker}</p>
+            <h2 id="capability-title">{copy.capabilitiesTitle}</h2>
           </div>
           <p>
             The same team can shape the customer experience, model complex
@@ -197,12 +196,12 @@ export function CapabilitySection() {
   );
 }
 
-export function InsightsPreview() {
+export function InsightsPreview({ copy }: { copy: SectionCopy }) {
   return (
     <section className="home-section insights-section" aria-labelledby="insights-title" data-atmosphere="teal">
       <Container>
         <div className="section-heading section-heading--inline">
-          <div><p className="section-kicker">Automotive insights</p><h2 id="insights-title">Thinking beyond the interface.</h2></div>
+          <div><p className="section-kicker">{copy.insightsKicker}</p><h2 id="insights-title">{copy.insightsTitle}</h2></div>
           <Link href="/insights">View all Insights <ArrowRight aria-hidden="true" size={17} /></Link>
         </div>
 
@@ -223,21 +222,17 @@ export function InsightsPreview() {
   );
 }
 
-export function HomeProposalCta() {
+export function HomeProposalCta({ copy }: { copy: Homepage["finalCta"] }) {
   return (
     <section className="home-proposal" aria-labelledby="home-proposal-title" data-atmosphere="amber">
       <Container>
         <div className="home-proposal__card">
           <Gauge aria-hidden="true" className="home-proposal__icon" />
-          <p className="section-kicker">Your next automotive project</p>
-          <h2 id="home-proposal-title">Ready to put it in motion?</h2>
-          <p>
-            Tell us whether you need a focused website, a connected platform, or
-            a complex automotive product. We’ll start with the workflow that
-            matters most.
-          </p>
+          <p className="section-kicker">{copy.kicker}</p>
+          <h2 id="home-proposal-title">{copy.title}</h2>
+          <p>{copy.description}</p>
           <div>
-            <Link href="/request-a-proposal" className="primary-link">Request a Proposal <ArrowUpRight aria-hidden="true" size={18} /></Link>
+            <Link href={copy.href} className="primary-link">{copy.label} <ArrowUpRight aria-hidden="true" size={18} /></Link>
             <Link href="/schedule-a-call" className="text-link">Schedule a Call <ArrowRight aria-hidden="true" size={18} /></Link>
           </div>
           <Layers3 aria-hidden="true" className="home-proposal__layers" />
