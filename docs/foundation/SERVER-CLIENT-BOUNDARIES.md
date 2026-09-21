@@ -99,6 +99,24 @@ needs it and pass serializable props from its Server Component parent.
   shared client wrapper: both purpose-built detail components remain fully
   server-rendered.
 
+## Phase 05 boundary audit
+
+- `/case-studies`, `/case-studies/[slug]`, `/insights`, and
+  `/insights/[slug]` are Server Components and known entries are emitted as
+  static HTML at build time.
+- `CaseStudyListing`, `InsightListing`, `CaseStudyDetail`, `InsightDetail`, and
+  the editorial JSON-LD components contain no `"use client"` boundary, browser
+  state, or client-side data fetching.
+- `src/content/editorial.ts` is the typed static source for this phase. Phase 07
+  can replace it with server-side Payload queries without changing the route or
+  presentation-component contracts.
+- Article tables of contents use ordinary hash links, and listing/detail motion
+  and hover treatments are CSS-only enhancements with reduced-motion support.
+- Case-study and insight headings, body copy, navigation links, image alt text,
+  metadata, and structured data are present in the initial server response.
+- Phase 05 introduces no new hydrated interaction island; the existing focused
+  shell and atmosphere islands retain their earlier boundaries.
+
 Important headings, links, and marketing copy must be present in initial HTML.
 Animations may enhance that HTML but must never be responsible for fetching or
 revealing indexable content.

@@ -119,18 +119,18 @@ export const insights = [
     title: "What a modern dealership website needs beyond vehicle listings",
     href: "/insights/modern-dealership-website-beyond-listings",
     category: "Dealership digital",
-    image: "/images/fleet-aerial.jpg",
+    image: "/images/insight-dealership-digital.jpg",
   },
   {
     title: "Designing fleet software around the work that happens every day",
     href: "/insights/designing-fleet-software-around-operations",
     category: "Fleet systems",
-    image: "/images/night-road-network.jpg",
+    image: "/images/insight-fleet-operations.jpg",
   },
   {
     title: "Connecting service bookings, work orders, and vehicle history",
     href: "/insights/connected-car-service-workflows",
     category: "Service platforms",
-    image: "/images/service-workshop.jpg",
+    image: "/images/insight-service-workflows.jpg",
   },
 ] as const;
