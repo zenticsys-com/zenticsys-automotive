@@ -67,17 +67,47 @@ Use only one event initially:
 30-minute Automotive Project Consultation
 ```
 
-### Email delivery — decide during the conversion phase
-
-The provider is intentionally not locked yet. Once selected, add server-only variables such as:
+### Public contact details
 
 ```env
-EMAIL_API_KEY=
+NEXT_PUBLIC_CONTACT_EMAIL=info@zenticsys.com
+NEXT_PUBLIC_CONTACT_PHONE=
+NEXT_PUBLIC_WHATSAPP_URL=
+```
+
+These values are intentionally public. `NEXT_PUBLIC_WHATSAPP_URL` must be an
+HTTPS `wa.me` or `api.whatsapp.com` URL. If phone or WhatsApp is blank, that
+contact method is not rendered.
+
+### Resend email delivery
+
+Phase 06 uses Resend through its HTTPS API. The API key and mailbox addresses
+are server-only:
+
+```env
+RESEND_API_KEY=
 CONTACT_TO_EMAIL=
 CONTACT_FROM_EMAIL=
 ```
 
-Do not expose email API keys to the browser. The provider must support production transactional email, domain verification, and spam/abuse controls.
+`CONTACT_FROM_EMAIL` must use a sender on a domain verified in Resend. It may
+include a display name, for example `Zenticsys Website
+<website@forms.zenticsys.com>`. `CONTACT_TO_EMAIL` is the monitored mailbox that
+receives proposals and messages. Do not expose `RESEND_API_KEY` to the browser.
+
+### Cloudflare Turnstile
+
+```env
+# Public widget identifier.
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=
+
+# Server-only Siteverify credential.
+TURNSTILE_SECRET_KEY=
+```
+
+Production submission requires server-side token verification. Local
+development can render without Turnstile when both values are absent, but that
+mode must not be used for a deployed production form.
 
 ## 3. Generating the Payload secret
 
@@ -206,7 +236,26 @@ Google Meet, Microsoft Teams, and Zoom should not be presented as selectable pla
 
 ## 8. Email and form delivery
 
-The proposal form and message form need a server-side delivery path. Decide the provider in Phase 06 before implementing production submission.
+Phase 06 sends proposal and contact submissions through Resend. The website
+calls Resend only from `POST /api/enquiries`; the API key never reaches the
+browser.
+
+### Resend portal setup
+
+Use the [Resend dashboard](https://resend.com/).
+
+1. Create or select the Zenticsys account.
+2. Open Domains and add a dedicated sending domain or subdomain, such as
+   `forms.zenticsys.com`.
+3. Add the DNS records Resend provides and wait until the domain is verified.
+4. Create a sending address such as `website@forms.zenticsys.com`.
+5. Open API Keys and create a key restricted to sending access.
+6. Store it as the server-only `RESEND_API_KEY`.
+7. Set `CONTACT_FROM_EMAIL` to the verified sender and `CONTACT_TO_EMAIL` to the
+   mailbox monitored by the Zenticsys team.
+8. Submit one contact message and one proposal with a small test attachment.
+9. Confirm delivery, reply-to behavior, the attachment, and the generated
+   enquiry reference.
 
 Required setup regardless of provider:
 
@@ -217,6 +266,29 @@ Required setup regardless of provider:
 - Add rate limiting and honeypot/Turnstile-style spam protection.
 - Do not send secrets or sensitive user input to client-side code.
 - Test delivery, failure handling, and reply-to behavior.
+
+### Cloudflare Turnstile portal setup
+
+Use the [Cloudflare Dashboard](https://dash.cloudflare.com/) and open
+Turnstile. This is separate from the R2 bucket configuration.
+
+1. Create a Turnstile widget named `Zenticsys Automotive Forms`.
+2. Add the production website hostname and the Vercel Preview hostname policy
+   you intend to test. Do not allow arbitrary production hostnames.
+3. Choose Managed mode.
+4. Copy the public sitekey into `NEXT_PUBLIC_TURNSTILE_SITE_KEY`.
+5. Copy the secret into the server-only `TURNSTILE_SECRET_KEY`.
+6. Add both values to Vercel Preview and Production with the correct hostname
+   configuration.
+7. For local automated testing, use Cloudflare's documented test sitekey and
+   test secret rather than production credentials.
+8. Verify successful submissions and deliberately test an expired or invalid
+   challenge. The server must reject an invalid token.
+
+Turnstile tokens are verified by the server against Cloudflare Siteverify for
+every real submission. The honeypot, same-origin check, request-size limit,
+attachment allowlist, and best-effort per-instance rate limit are additional
+layers; none replaces Turnstile.
 
 ## 9. Local environment file
 
@@ -241,9 +313,14 @@ R2_BUCKET=
 R2_ENDPOINT=
 R2_PUBLIC_URL=
 NEXT_PUBLIC_CALENDLY_URL=
-EMAIL_API_KEY=
+NEXT_PUBLIC_CONTACT_EMAIL=info@zenticsys.com
+NEXT_PUBLIC_CONTACT_PHONE=
+NEXT_PUBLIC_WHATSAPP_URL=
+RESEND_API_KEY=
 CONTACT_TO_EMAIL=
 CONTACT_FROM_EMAIL=
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET_KEY=
 ```
 
 ## 10. Verification checklist
@@ -258,6 +335,8 @@ Before considering infrastructure configured:
 - A Calendly test booking appears in Google Calendar.
 - The test booking contains a Google Meet link.
 - Proposal/message test submissions reach the intended mailbox.
+- Proposal attachments arrive intact and stay within the 4 MB application limit.
+- Turnstile rejects invalid/expired tokens and accepts a valid production token.
 - Preview values cannot affect production content.
 - No secret appears in browser source, logs, Git history, or client bundles.
 - Vercel preview and production deployments use the intended variables.

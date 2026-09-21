@@ -117,6 +117,23 @@ needs it and pass serializable props from its Server Component parent.
 - Phase 05 introduces no new hydrated interaction island; the existing focused
   shell and atmosphere islands retain their earlier boundaries.
 
+## Phase 06 boundary audit
+
+- `/request-a-proposal`, `/schedule-a-call`, `/contact`, and `/privacy` remain
+  Server Component routes with headings, explanatory content, metadata, direct
+  contact links, and scheduling alternatives in their initial HTML.
+- `ProposalForm`, `ContactForm`, and `TurnstileWidget` are focused Client
+  Components because they manage step state, conditional controls, submission
+  feedback, file selection, and the Turnstile browser widget.
+- The client submits `FormData` only to the same-origin `/api/enquiries` route.
+  Validation, Turnstile Siteverify, attachment encoding, Resend delivery,
+  recipient addresses, and provider credentials remain server-side.
+- The scheduling route validates the configured Calendly hostname on the server
+  and renders a direct iframe URL. No Calendly API, custom availability engine,
+  Google Calendar API, or video-provider selector is shipped.
+- Missing external configuration produces explicit non-success UI and cannot
+  expose a secret or create a false booking/submission confirmation.
+
 Important headings, links, and marketing copy must be present in initial HTML.
 Animations may enhance that HTML but must never be responsible for fetching or
 revealing indexable content.

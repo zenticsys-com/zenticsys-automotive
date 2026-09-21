@@ -1,0 +1,933 @@
+.conversion-page {
+  min-height: 100vh;
+  padding: clamp(9rem, 16vw, 13rem) 0 var(--section-space);
+}
+
+.conversion-hero {
+  max-width: 67rem;
+  margin: 0 auto clamp(4rem, 8vw, 7rem);
+  text-align: center;
+}
+
+.conversion-hero h1 {
+  margin: 1rem auto 0;
+  color: var(--color-white);
+  font-size: clamp(3rem, 7.5vw, 7.25rem);
+  font-weight: 610;
+  letter-spacing: -0.07em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.conversion-hero > p:last-child {
+  max-width: 47rem;
+  margin: 1.6rem auto 0;
+  color: #c3c8cb;
+  font-size: clamp(1rem, 1.7vw, 1.22rem);
+  line-height: 1.65;
+  text-wrap: balance;
+}
+
+.conversion-hero--compact {
+  max-width: 60rem;
+}
+
+.conversion-hero--compact h1 {
+  font-size: clamp(3rem, 6.5vw, 6.2rem);
+}
+
+.proposal-layout {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.38fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.proposal-context {
+  position: sticky;
+  top: 7.5rem;
+  padding-top: 1rem;
+}
+
+.proposal-context h2,
+.schedule-context h2,
+.contact-direct h2,
+.contact-form-shell > h2 {
+  margin: 0.9rem 0 0;
+  color: var(--color-white);
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-weight: 590;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.proposal-context ul {
+  display: grid;
+  margin: 2rem 0 0;
+  padding: 0;
+  gap: 1rem;
+  list-style: none;
+}
+
+.proposal-context li {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  gap: 0.75rem;
+  color: #b8bec1;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.proposal-context li svg {
+  margin-top: 0.15rem;
+  color: var(--brand-light);
+}
+
+.proposal-context__alternative {
+  margin: 2.5rem 0 0.8rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.proposal-form,
+.contact-form-shell {
+  border: 1px solid rgb(255 255 255 / 12%);
+  background:
+    linear-gradient(140deg, rgb(239 61 35 / 8%), transparent 34%),
+    rgb(10 12 13 / 88%);
+  box-shadow: 0 2rem 7rem rgb(0 0 0 / 25%);
+  backdrop-filter: blur(24px);
+}
+
+.proposal-form {
+  position: relative;
+  min-width: 0;
+  padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+.proposal-progress {
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.proposal-progress__bar {
+  height: 2px;
+  overflow: hidden;
+  background: rgb(255 255 255 / 10%);
+}
+
+.proposal-progress__bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand-dark), var(--brand-light), #ffb14a);
+  box-shadow: 0 0 1rem var(--brand);
+  transition: width 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.proposal-progress ol {
+  display: flex;
+  margin: 1rem 0 0;
+  padding: 0;
+  justify-content: space-between;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+.proposal-progress li {
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+  color: rgb(255 255 255 / 36%);
+  font-size: 0.65rem;
+  font-style: normal;
+}
+
+.proposal-progress li > span {
+  display: grid;
+  width: 1.65rem;
+  height: 1.65rem;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 14%);
+  background: #111315;
+  font-weight: 650;
+}
+
+.proposal-progress li em {
+  font-style: normal;
+}
+
+.proposal-progress li[aria-current="step"],
+.proposal-progress li[data-complete="true"] {
+  color: var(--color-white);
+}
+
+.proposal-progress li[aria-current="step"] > span,
+.proposal-progress li[data-complete="true"] > span {
+  border-color: var(--brand-light);
+  background: rgb(239 61 35 / 14%);
+}
+
+.proposal-form__panel[hidden] {
+  display: none;
+}
+
+.proposal-form__panel {
+  animation: form-panel-arrive 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.form-step-count {
+  margin: 0 0 0.7rem;
+  color: var(--brand-light);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+}
+
+.proposal-form__panel h2 {
+  max-width: 18ch;
+  margin: 0;
+  color: var(--color-white);
+  font-size: clamp(2rem, 4.5vw, 4.1rem);
+  font-weight: 590;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.proposal-form__panel h2:focus {
+  outline: none;
+}
+
+.form-step-intro {
+  max-width: 38rem;
+  margin: 1rem 0 2.25rem;
+  color: #aeb5b8;
+  line-height: 1.6;
+}
+
+.choice-grid {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.choice-grid--projects .choice-card:last-child {
+  grid-column: 1 / -1;
+}
+
+.choice-grid legend,
+.feature-choices legend {
+  width: 100%;
+  margin: 0 0 1rem;
+  color: var(--color-white);
+  font-size: 0.9rem;
+  font-weight: 630;
+}
+
+.choice-card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.choice-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.choice-card > span {
+  display: flex;
+  min-height: 7.25rem;
+  padding: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.8rem;
+  border: 1px solid rgb(255 255 255 / 12%);
+  background: rgb(255 255 255 / 3%);
+  transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.choice-card strong {
+  color: var(--color-white);
+  font-size: 0.95rem;
+  font-weight: 610;
+}
+
+.choice-card small {
+  color: #9ea6aa;
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.choice-card:hover > span {
+  border-color: rgb(255 255 255 / 27%);
+  transform: translateY(-2px);
+}
+
+.choice-card input:focus-visible + span {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.choice-card input:checked + span {
+  border-color: var(--brand-light);
+  background: rgb(239 61 35 / 11%);
+  box-shadow: inset 0 0 0 1px rgb(239 61 35 / 16%);
+}
+
+.choice-grid--compact {
+  margin-bottom: 2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.choice-card--compact > span {
+  min-height: 3.75rem;
+  justify-content: center;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.form-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.55rem;
+  color: var(--color-white);
+  font-size: 0.78rem;
+  font-weight: 590;
+}
+
+.form-field--wide {
+  grid-column: 1 / -1;
+}
+
+.form-field > span:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form-field em {
+  color: #899196;
+  font-size: 0.62rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgb(255 255 255 / 13%);
+  border-radius: 0;
+  background: rgb(255 255 255 / 4%);
+  color: var(--color-white);
+  outline: none;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.form-field textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.form-field select {
+  color-scheme: dark;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #737c80;
+}
+
+.form-field input:hover,
+.form-field textarea:hover,
+.form-field select:hover,
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color: rgb(255 255 255 / 32%);
+  background: rgb(255 255 255 / 6%);
+}
+
+.form-field input:focus-visible,
+.form-field textarea:focus-visible,
+.form-field select:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.form-field input[aria-invalid="true"] {
+  border-color: #ff806f;
+}
+
+.field-error,
+.form-alert {
+  color: #ff9b8d;
+}
+
+.feature-choices {
+  margin: 2rem 0;
+  padding: 0;
+  border: 0;
+}
+
+.feature-choices > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.feature-choices label {
+  position: relative;
+  cursor: pointer;
+}
+
+.feature-choices input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.feature-choices span {
+  display: block;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid rgb(255 255 255 / 13%);
+  background: rgb(255 255 255 / 3%);
+  color: #b9c0c3;
+  font-size: 0.75rem;
+}
+
+.feature-choices input:checked + span {
+  border-color: var(--brand-light);
+  background: rgb(239 61 35 / 11%);
+  color: var(--color-white);
+}
+
+.feature-choices input:focus-visible + span {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.proposal-form__actions {
+  display: flex;
+  margin-top: 2.25rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form-button {
+  display: inline-flex;
+  min-height: 3.25rem;
+  padding: 0.8rem 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 1px solid var(--brand);
+  border-radius: 0;
+  background: var(--brand);
+  color: var(--color-white);
+  font-weight: 650;
+  cursor: pointer;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.form-button:hover:not(:disabled) {
+  background: var(--brand-dark);
+  transform: translateY(-2px);
+}
+
+.form-button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.form-button--quiet {
+  border-color: rgb(255 255 255 / 14%);
+  background: rgb(255 255 255 / 4%);
+}
+
+.file-field__control {
+  display: flex !important;
+  min-height: 3.6rem;
+  padding: 0.8rem;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.65rem !important;
+  border: 1px dashed rgb(255 255 255 / 20%);
+  color: #9fa6aa;
+  font-weight: 450;
+}
+
+.file-field input[type="file"] {
+  min-height: auto;
+  padding: 0.6rem;
+}
+
+.consent-field {
+  display: grid;
+  margin-top: 1.5rem;
+  grid-template-columns: 1rem 1fr;
+  align-items: start;
+  gap: 0.7rem;
+  color: #aeb5b8;
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+.consent-field input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0.15rem 0 0;
+  accent-color: var(--brand);
+}
+
+.consent-field a,
+.calendly-frame__fallback a,
+.legal-page a {
+  color: var(--color-white);
+  text-underline-offset: 0.2em;
+}
+
+.turnstile-shell,
+.form-configuration-note {
+  margin-top: 1.5rem;
+}
+
+.form-configuration-note {
+  padding: 0.8rem;
+  border: 1px solid rgb(255 177 74 / 30%);
+  background: rgb(255 177 74 / 6%);
+  color: #d0b286;
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.form-alert {
+  margin: 1rem 0 0;
+  padding: 0.8rem;
+  border-left: 2px solid #ff806f;
+  background: rgb(255 80 60 / 8%);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.honeypot-field {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.form-success {
+  display: grid;
+  min-height: 34rem;
+  padding: clamp(2rem, 6vw, 5rem);
+  align-content: center;
+  border: 1px solid rgb(255 255 255 / 12%);
+  background: rgb(10 12 13 / 88%);
+}
+
+.form-success__icon {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1.5rem;
+  place-items: center;
+  background: var(--brand);
+}
+
+.form-success h2 {
+  max-width: 15ch;
+  margin: 1rem 0 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 590;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.form-success p:last-child {
+  max-width: 38rem;
+  color: #adb4b7;
+  line-height: 1.65;
+}
+
+.form-success--compact {
+  min-height: 27rem;
+}
+
+/* Scheduling */
+
+.schedule-layout {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.42fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2rem, 6vw, 5rem);
+}
+
+.schedule-context {
+  position: sticky;
+  top: 7rem;
+}
+
+.schedule-context > p:not(.section-kicker) {
+  margin: 1.4rem 0 0;
+  color: #aeb5b8;
+  line-height: 1.65;
+}
+
+.schedule-facts {
+  display: grid;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.schedule-facts li {
+  display: grid;
+  padding: 1rem 0;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.8rem;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+}
+
+.schedule-facts svg {
+  color: var(--brand-light);
+}
+
+.schedule-facts span {
+  display: grid;
+  gap: 0.2rem;
+  color: #929a9e;
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.schedule-facts strong {
+  color: var(--color-white);
+  font-size: 0.88rem;
+}
+
+.schedule-alternatives {
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.schedule-alternatives p {
+  margin: 0 0 0.3rem;
+  color: #899196;
+  font-size: 0.72rem;
+}
+
+.schedule-alternatives a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-white);
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.calendly-frame {
+  min-width: 0;
+  min-height: 48rem;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 12%);
+  background: #111315;
+  box-shadow: 0 2rem 7rem rgb(0 0 0 / 30%);
+}
+
+.calendly-frame iframe {
+  display: block;
+  width: 100%;
+  min-height: 45rem;
+  border: 0;
+}
+
+.calendly-frame__fallback {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+  color: #899196;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.calendly-placeholder {
+  display: grid;
+  min-height: 48rem;
+  padding: clamp(2rem, 7vw, 5rem);
+  place-content: center;
+  justify-items: start;
+  background:
+    linear-gradient(120deg, rgb(239 61 35 / 11%), transparent 42%),
+    repeating-linear-gradient(90deg, transparent 0 4.9rem, rgb(255 255 255 / 3%) 5rem),
+    #101214;
+}
+
+.calendly-placeholder > svg {
+  color: var(--brand-light);
+}
+
+.calendly-placeholder h2 {
+  max-width: 12ch;
+  margin: 1.5rem 0 0;
+  color: var(--color-white);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 590;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.calendly-placeholder p {
+  max-width: 34rem;
+  color: #aeb5b8;
+  line-height: 1.6;
+}
+
+/* Contact */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.42fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2rem, 7vw, 7rem);
+}
+
+.contact-direct {
+  position: sticky;
+  top: 7rem;
+}
+
+.contact-method {
+  display: grid;
+  padding: 1rem 0;
+  grid-template-columns: 1.5rem 1fr 1.1rem;
+  align-items: center;
+  gap: 0.8rem;
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+  color: #aeb5b8;
+  text-decoration: none;
+}
+
+.contact-method:first-of-type {
+  margin-top: 2rem;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+}
+
+.contact-method > svg:first-child {
+  color: var(--brand-light);
+}
+
+.contact-method > svg:last-child {
+  opacity: 0.45;
+}
+
+.contact-method span {
+  display: grid;
+  min-width: 0;
+  gap: 0.15rem;
+  overflow-wrap: anywhere;
+  font-size: 0.78rem;
+}
+
+.contact-method strong {
+  color: var(--color-white);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.response-expectation {
+  margin: 2rem 0 0;
+  color: #929a9e;
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.response-expectation strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--color-white);
+}
+
+.contact-next-paths {
+  display: grid;
+  margin-top: 1.5rem;
+  gap: 0.6rem;
+}
+
+.contact-next-paths a {
+  color: var(--color-white);
+  font-size: 0.8rem;
+  text-underline-offset: 0.2em;
+}
+
+.contact-form-shell {
+  padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+.contact-form-shell > h2 {
+  margin-bottom: 2.5rem;
+}
+
+.contact-form .form-button {
+  margin-top: 1.5rem;
+}
+
+/* Legal */
+
+.legal-page {
+  min-height: 100vh;
+  padding: clamp(10rem, 17vw, 14rem) 0 var(--section-space);
+}
+
+.legal-page header,
+.legal-page article {
+  max-width: var(--reading-width);
+  margin-inline: auto;
+}
+
+.legal-page header h1 {
+  margin: 1rem 0 0;
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 600;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
+}
+
+.legal-page header > p:last-child {
+  color: #8f979b;
+}
+
+.legal-page article {
+  margin-top: 5rem;
+}
+
+.legal-page section {
+  padding: 2rem 0;
+  border-top: 1px solid rgb(255 255 255 / 11%);
+}
+
+.legal-page h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.legal-page article p {
+  color: #b2b9bc;
+  line-height: 1.75;
+}
+
+@keyframes form-panel-arrive {
+  from { opacity: 0; transform: translateY(0.8rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .proposal-layout,
+  .schedule-layout,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .proposal-context,
+  .schedule-context,
+  .contact-direct {
+    position: static;
+  }
+
+  .proposal-context {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .conversion-page {
+    padding-top: 8.5rem;
+  }
+
+  .conversion-hero {
+    margin-bottom: 3.25rem;
+  }
+
+  .conversion-hero h1,
+  .conversion-hero--compact h1 {
+    font-size: clamp(2.6rem, 14vw, 4rem);
+  }
+
+  .proposal-form,
+  .contact-form-shell {
+    margin-inline: calc(var(--page-gutter) * -0.25);
+  }
+
+  .proposal-progress li em {
+    display: none;
+  }
+
+  .choice-grid,
+  .choice-grid--compact,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .choice-grid--projects .choice-card:last-child,
+  .form-field--wide {
+    grid-column: auto;
+  }
+
+  .choice-card > span {
+    min-height: 5.8rem;
+  }
+
+  .choice-card--compact > span {
+    min-height: 3.5rem;
+  }
+
+  .proposal-form__actions {
+    align-items: stretch;
+  }
+
+  .proposal-form__actions .form-button {
+    min-width: 0;
+  }
+
+  .calendly-frame,
+  .calendly-placeholder {
+    min-height: 38rem;
+  }
+
+  .calendly-frame iframe {
+    min-height: 42rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proposal-form__panel,
+  .proposal-progress__bar span {
+    animation: none;
+    transition: none;
+  }
+}
