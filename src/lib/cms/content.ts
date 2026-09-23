@@ -16,6 +16,99 @@ import { isCmsFullyConfigured } from "@/lib/cms/configuration";
 import type { CaseStudy, Insight, Media, Page, Service, Solution } from "@/payload-types";
 import type { Footer, Homepage, Navigation, SiteSetting } from "@/payload-types";
 
+let payloadPromise: ReturnType<typeof getPayload> | undefined;
+
+async function getCmsPayload() {
+  try {
+    payloadPromise ??= getPayload({ config });
+    return await payloadPromise;
+  } catch (error) {
+    // Do not permanently cache a transient database or provider failure.
+    payloadPromise = undefined;
+    throw error;
+  }
+}
+
+function hasText(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function mergeDefined<T extends object>(fallback: T, value: Partial<T> | null | undefined): T {
+  const merged = { ...fallback } as Record<string, unknown>;
+  if (!value) return merged as T;
+
+  for (const [key, candidate] of Object.entries(value)) {
+    if (candidate !== undefined && candidate !== null && candidate !== "") {
+      merged[key] = candidate;
+    }
+  }
+
+  return merged as T;
+}
+
+function validLinks(
+  value: Array<{ href?: string | null; label?: string | null }> | null | undefined,
+  fallback: Array<{ href: string; label: string }>,
+) {
+  const links = value?.filter(
+    (link): link is { href: string; label: string } => hasText(link?.href) && hasText(link?.label),
+  );
+  return links?.length ? links : fallback.map((link) => ({ ...link }));
+}
+
+function mergeHomepage(doc: Homepage): Homepage {
+  return {
+    ...doc,
+    hero: mergeDefined(fallbackHomepage.hero, doc.hero),
+    sections: mergeDefined(fallbackHomepage.sections, doc.sections),
+    finalCta: mergeDefined(fallbackHomepage.finalCta, doc.finalCta),
+    seo: mergeDefined(fallbackHomepage.seo || {}, doc.seo),
+  } as Homepage;
+}
+
+function mergeNavigation(doc: Navigation): Navigation {
+  return {
+    ...fallbackNavigation,
+    ...doc,
+    primaryLinks: validLinks(doc.primaryLinks, fallbackNavigation.primaryLinks || []),
+    serviceLinks: validLinks(doc.serviceLinks, fallbackNavigation.serviceLinks || []),
+    proposalLabel: hasText(doc.proposalLabel) ? doc.proposalLabel : fallbackNavigation.proposalLabel,
+    scheduleLabel: hasText(doc.scheduleLabel) ? doc.scheduleLabel : fallbackNavigation.scheduleLabel,
+  } as Navigation;
+}
+
+function mergeFooter(doc: Footer): Footer {
+  const linkGroups = doc.linkGroups
+    ?.map((group) => ({
+      title: hasText(group?.title) ? group.title : "",
+      links: validLinks(group?.links, []),
+    }))
+    .filter((group) => hasText(group.title) && group.links.length > 0);
+
+  return {
+    ...fallbackFooter,
+    ...doc,
+    kicker: hasText(doc.kicker) ? doc.kicker : fallbackFooter.kicker,
+    title: hasText(doc.title) ? doc.title : fallbackFooter.title,
+    description: hasText(doc.description) ? doc.description : fallbackFooter.description,
+    ctaLabel: hasText(doc.ctaLabel) ? doc.ctaLabel : fallbackFooter.ctaLabel,
+    ctaHref: hasText(doc.ctaHref) ? doc.ctaHref : fallbackFooter.ctaHref,
+    copyright: hasText(doc.copyright) ? doc.copyright : fallbackFooter.copyright,
+    linkGroups: linkGroups?.length ? linkGroups : fallbackFooter.linkGroups,
+  } as Footer;
+}
+
+function mergeSiteSettings(doc: SiteSetting): SiteSetting {
+  return {
+    ...fallbackSiteSettings,
+    ...doc,
+    publicEmail: hasText(doc.publicEmail) ? doc.publicEmail : fallbackSiteSettings.publicEmail,
+    responsePromise: hasText(doc.responsePromise) ? doc.responsePromise : fallbackSiteSettings.responsePromise,
+    socialLinks: validLinks(doc.socialLinks, fallbackSiteSettings.socialLinks || []),
+    seo: mergeDefined(fallbackSiteSettings.seo || {}, doc.seo),
+  } as SiteSetting;
+}
+
 function imageUrl(image: string | Media | null | undefined, fallback?: string | null) {
   return typeof image === "object" && image?.url ? image.url : fallback || "/images/og-default.jpg";
 }
@@ -131,7 +224,7 @@ async function safelyFind<T>(run: () => Promise<T>, fallback: T): Promise<T> {
 
 export const getSolutions = cache(() =>
   safelyFind(async () => {
-    const payload = await getPayload({ config });
+    const payload = await getCmsPayload();
     const result = await payload.find({ collection: "solutions", draft: false, limit: 100, overrideAccess: false, sort: "createdAt" });
     return result.docs.map((doc) => catalogDocumentToEntry(doc, "solution"));
   }, [...fallbackSolutions]),
@@ -139,7 +232,7 @@ export const getSolutions = cache(() =>
 
 export const getServices = cache(() =>
   safelyFind(async () => {
-    const payload = await getPayload({ config });
+    const payload = await getCmsPayload();
     const result = await payload.find({ collection: "services", draft: false, limit: 100, overrideAccess: false, sort: "createdAt" });
     return result.docs.map((doc) => catalogDocumentToEntry(doc, "service"));
   }, [...fallbackServices]),
@@ -147,7 +240,7 @@ export const getServices = cache(() =>
 
 export const getCaseStudies = cache(() =>
   safelyFind(async () => {
-    const payload = await getPayload({ config });
+    const payload = await getCmsPayload();
     const result = await payload.find({ collection: "case-studies", draft: false, limit: 100, overrideAccess: false, sort: "-createdAt" });
     return result.docs.map(caseDocumentToEntry);
   }, [...fallbackCaseStudies]),
@@ -155,7 +248,7 @@ export const getCaseStudies = cache(() =>
 
 export const getInsights = cache(() =>
   safelyFind(async () => {
-    const payload = await getPayload({ config });
+    const payload = await getCmsPayload();
     const result = await payload.find({ collection: "insights", draft: false, limit: 100, overrideAccess: false, sort: "-publishedAt" });
     return result.docs.map(insightDocumentToEntry);
   }, [...fallbackInsights]),
@@ -178,29 +271,29 @@ export async function getInsightBySlug(slug: string) {
 }
 
 export const getHomepage = cache(() => safelyFind(async () => {
-  const payload = await getPayload({ config });
-  return payload.findGlobal({ slug: "homepage", overrideAccess: false });
+  const payload = await getCmsPayload();
+  return mergeHomepage(await payload.findGlobal({ slug: "homepage", overrideAccess: false }));
 }, fallbackHomepage as Homepage));
 
 export const getNavigation = cache(() => safelyFind(async () => {
-  const payload = await getPayload({ config });
-  return payload.findGlobal({ slug: "navigation", overrideAccess: false });
+  const payload = await getCmsPayload();
+  return mergeNavigation(await payload.findGlobal({ slug: "navigation", overrideAccess: false }));
 }, fallbackNavigation as Navigation));
 
 export const getFooter = cache(() => safelyFind(async () => {
-  const payload = await getPayload({ config });
-  return payload.findGlobal({ slug: "footer", overrideAccess: false });
+  const payload = await getCmsPayload();
+  return mergeFooter(await payload.findGlobal({ slug: "footer", overrideAccess: false }));
 }, fallbackFooter as Footer));
 
 export const getSiteSettings = cache(() => safelyFind(async () => {
-  const payload = await getPayload({ config });
-  return payload.findGlobal({ slug: "site-settings", overrideAccess: false });
+  const payload = await getCmsPayload();
+  return mergeSiteSettings(await payload.findGlobal({ slug: "site-settings", overrideAccess: false }));
 }, fallbackSiteSettings as SiteSetting));
 
 export const getPageBySlug = cache(async (slug: string): Promise<Page | undefined> => {
   if (!isCmsFullyConfigured()) return undefined;
   try {
-    const payload = await getPayload({ config });
+    const payload = await getCmsPayload();
     const result = await payload.find({
       collection: "pages",
       draft: false,
@@ -218,7 +311,7 @@ export const getPageBySlug = cache(async (slug: string): Promise<Page | undefine
 export const getManagedPages = cache(async (): Promise<Page[]> => {
   if (!isCmsFullyConfigured()) return [];
   try {
-    const payload = await getPayload({ config });
+    const payload = await getCmsPayload();
     const result = await payload.find({
       collection: "pages",
       draft: false,
