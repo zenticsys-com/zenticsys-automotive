@@ -188,7 +188,6 @@ export interface Media {
    * Include disclosure limits, client approvals, or trademark concerns.
    */
   usageNotes?: string | null;
-  prefix?: string | null;
   _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -804,7 +803,6 @@ export interface MediaSelect<T extends boolean = true> {
   license?: T;
   downloadedAt?: T;
   usageNotes?: T;
-  prefix?: T;
   _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
