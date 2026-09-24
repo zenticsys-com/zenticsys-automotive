@@ -162,3 +162,36 @@ test("separates operation imagery and presentation from solution cards", async (
   await expect(fleetSelector).toHaveClass(/is-active/);
   await expect(page.locator(".audience-stage img").nth(1)).toHaveClass(/is-active/);
 });
+
+test("keeps phone CTAs consistent and avoids a forced tablet hero gap", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".home-hero")).toBeVisible();
+
+  const viewportWidth = page.viewportSize()?.width ?? 0;
+
+  if (viewportWidth <= 480) {
+    for (const selector of [".home-hero__actions", ".home-proposal__card > div"]) {
+      const group = page.locator(selector);
+      await expect(group).toHaveCSS("flex-direction", "column");
+      const widths = await group.locator(":scope > a").evaluateAll((links) =>
+        links.map((link) => Math.round(link.getBoundingClientRect().width)),
+      );
+      expect(widths).toHaveLength(2);
+      expect(widths[0]).toBe(widths[1]);
+    }
+  }
+
+  if (viewportWidth >= 768 && viewportWidth <= 1023) {
+    const dimensions = await page.evaluate(() => {
+      const hero = document.querySelector(".home-hero")!.getBoundingClientRect();
+      const nextSection = document.querySelector("#who-we-help")!.getBoundingClientRect();
+      return {
+        minHeight: getComputedStyle(document.querySelector(".home-hero")!).minHeight,
+        gap: Math.round(nextSection.top - hero.bottom),
+      };
+    });
+
+    expect(dimensions.minHeight).not.toBe("1056px");
+    expect(dimensions.gap).toBeLessThanOrEqual(24);
+  }
+});

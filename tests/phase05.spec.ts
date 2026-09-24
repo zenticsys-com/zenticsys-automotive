@@ -116,5 +116,15 @@ test("keeps Phase 05 pages inside every target viewport", async ({ page }) => {
       scrollWidth: document.documentElement.scrollWidth,
     }));
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+
+    if (path === "/case-studies") {
+      const heroBounds = await page.evaluate(() => {
+        const container = document.querySelector(".editorial-listing-hero .site-container")!.getBoundingClientRect();
+        const title = document.querySelector(".editorial-listing-hero h1")!.getBoundingClientRect();
+        return { containerLeft: container.left, containerRight: container.right, titleLeft: title.left, titleRight: title.right };
+      });
+      expect(heroBounds.titleLeft).toBeGreaterThanOrEqual(heroBounds.containerLeft);
+      expect(heroBounds.titleRight).toBeLessThanOrEqual(heroBounds.containerRight);
+    }
   }
 });

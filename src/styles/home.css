@@ -1484,10 +1484,6 @@
 }
 
 @media (max-width: 1023px) {
-  .home-hero {
-    min-height: 66rem;
-  }
-
   .system-visual {
     height: 29rem;
   }
@@ -1859,13 +1855,21 @@
   }
 }
 
-@media (max-width: 374px) {
+@media (max-width: 480px) {
   .home-hero__actions,
   .home-proposal__card > div {
+    width: 100%;
     align-items: stretch;
     flex-direction: column;
   }
 
+  .home-hero__actions > a,
+  .home-proposal__card > div > a {
+    width: 100%;
+  }
+}
+
+@media (max-width: 374px) {
   .system-panel {
     padding: 0.75rem;
   }
