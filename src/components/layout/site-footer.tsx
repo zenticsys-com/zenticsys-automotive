@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
+import { SiteLogo } from "@/components/layout/site-logo";
 import { Container } from "@/components/ui/container";
 import { legalNavigation } from "@/lib/navigation";
 
@@ -31,9 +32,7 @@ export function SiteFooter({ kicker, title, description, ctaLabel, ctaHref, copy
 
         <div className="site-footer__grid">
           <div className="site-footer__brand">
-            <span className="site-footer__mark" aria-hidden="true">
-              Z
-            </span>
+            <SiteLogo priority={false} />
             <p>{description}</p>
           </div>
 

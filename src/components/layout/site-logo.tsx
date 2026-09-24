@@ -3,9 +3,10 @@ import Link from "next/link";
 
 type SiteLogoProps = {
   onNavigate?: () => void;
+  priority?: boolean;
 };
 
-export function SiteLogo({ onNavigate }: SiteLogoProps) {
+export function SiteLogo({ onNavigate, priority = true }: SiteLogoProps) {
   return (
     <Link
       href="/"
@@ -19,7 +20,7 @@ export function SiteLogo({ onNavigate }: SiteLogoProps) {
         width={2114}
         height={389}
         className="site-logo__image"
-        priority
+        priority={priority}
         sizes="(max-width: 479px) 108px, 138px"
       />
     </Link>

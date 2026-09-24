@@ -3,19 +3,24 @@
 .editorial-listing-hero {
   position: relative;
   display: grid;
+  width: 100%;
   min-height: 78svh;
   padding: clamp(11rem, 18vw, 16rem) 0 clamp(7rem, 11vw, 10rem);
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   text-align: center;
 }
 
 .editorial-listing-hero .site-container {
   display: flex;
+  min-width: 0;
   align-items: center;
   flex-direction: column;
 }
 
 .editorial-listing-hero h1 {
+  width: 100%;
+  min-width: 0;
   max-width: 11ch;
   margin: 1.1rem auto 0;
   font-size: clamp(4rem, 9vw, 8.6rem);
@@ -1055,7 +1060,8 @@
   }
 
   .editorial-listing-hero h1 {
-    font-size: clamp(3.5rem, 18vw, 5.6rem);
+    overflow-wrap: break-word;
+    font-size: clamp(2.7rem, 14vw, 5.6rem);
   }
 
   .case-study-card {

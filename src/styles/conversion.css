@@ -511,6 +511,16 @@
   margin-top: 1.5rem;
 }
 
+.turnstile-shell {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.turnstile-shell--loading {
+  min-height: 4.5rem;
+}
+
 .form-configuration-note {
   padding: 0.8rem;
   border: 1px solid rgb(255 177 74 / 30%);
